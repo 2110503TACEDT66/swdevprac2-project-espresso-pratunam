@@ -30,9 +30,9 @@ const RecommendSection = () => {
   return (
     <div className="h-screen w-screen bg-[#0C0C0A] pt-[10%]">
       <div className="w-full h-[15%] flex justify-center">
-        <h1 className="text-white text-6xl font-normal">We recommend these</h1>
+        <h1 className="text-white text-6xl font-normal">User&apos;s choice 2023</h1>
       </div>
-      <div className="w-full h-[85%] grid grid-flow-col grid-col-3 gap-4 px-10">
+      <div className="w-full h-[75%] grid grid-flow-col grid-col-3 gap-4 px-10">
         {
             mockCars.map((car) => {
                 return(

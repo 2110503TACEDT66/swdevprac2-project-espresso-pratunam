@@ -10,12 +10,13 @@ interface Props {
 
 const RecommendCard = ({name,imgSrc, zeroToHundred,topSpeed, engineLitre}: Props) => {
   return (
-    <div className="w-[100%] h-[90%] bg-white relative hover:shadow-[0_0_60px_10px_rgba(255,255,255,0.2)]">
+    <div className="w-[100%] h-[100%] bg-white relative hover:shadow-[0_0_60px_10px_rgba(255,255,255,0.2)]">
       <Image
         src={imgSrc}
         layout="fill"
         objectFit="cover"
         alt="LandingPageImage"
+        objectPosition="bottom"
       />
       <div className="absolute inset-0 z-100 p-5 flex flex-col items-start justify-end bg-black bg-opacity-20">
         <h2 className="text-3xl font-semibold text-white mb-3">{name}</h2>
