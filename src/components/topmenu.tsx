@@ -16,7 +16,7 @@ const TopMenu = () => {
       isMenuOpen ? "" : ""
     }`}>
       <div className="w-[20%] flex items-center text-white font-bold justify-start px-10">
-        <button className={`transition duration-200 ease-in-out 
+        <button className={`transition duration-500 ease-in-out 
         ${  isMenuOpen ? "transform rotate-180" : ""}`} type="button" onClick={toggleMenu} >
         {isMenuOpen ? (
           <svg
