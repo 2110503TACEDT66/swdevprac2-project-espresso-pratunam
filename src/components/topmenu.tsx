@@ -1,31 +1,7 @@
-'use client'
-import React, { useState } from "react";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
-import userLogIn from "../libs/userlogin";
-import { useSession } from "next-auth/react";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Link from "next/link";
 
-const  TopMenu = async() => {
-  const [showBox, setShowBox] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const session = await getServerSession(authOptions)
-
-  const toggleBox = () => {
-    setShowBox(!showBox);
-  };
-
-  const handleLogin = () => {
-    // Perform login actions here
-    setIsLoggedIn(true);
-    setShowBox(false)
-  };
-
-  const handleLogout = () => {
-    // Perform logout actions here
-    setIsLoggedIn(false);
-  };
+const TopMenu = async() => {
 
   return (
     <div className="w-screen h-20 backdrop-blur-md backdrop-brightness-[70%] fixed top-0 z-[1] flex justify-between">
@@ -48,7 +24,6 @@ const  TopMenu = async() => {
         <Link
           href="/profile"
           className="ml-5 hover:bg-white hover:bg-opacity-10 px-2 py-2 rounded-lg"
-          onClick={toggleBox}
         >
           <Image
             src="/img/user.png"
@@ -58,10 +33,10 @@ const  TopMenu = async() => {
             alt="userImage"
           />
         </Link>
-        
+
       </div>
     </div>
-    
+
   );
 };
 
