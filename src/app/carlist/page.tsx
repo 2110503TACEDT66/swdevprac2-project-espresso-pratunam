@@ -89,7 +89,7 @@ const carData = [
 
 const CarListPage = () => {
   return (
-    <main className="relative">
+    <main className="relative bg-white pb-5">
       <TopMenuBlack></TopMenuBlack>
       <div className=" w-screen ">
         <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
