@@ -91,7 +91,7 @@ const CarListPage = () => {
   return (
     <main className="relative">
       <TopMenuBlack></TopMenuBlack>
-      <div className=" w-screen ">
+      <div className=" w-screen mx-auto my-20">
         <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
           {mockCars.map((car) => {
             return (
