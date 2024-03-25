@@ -15,7 +15,7 @@ const TopMenu = () => {
     <div className={` w-screen h-20 fixed top-0 z-[1] flex justify-between${
       isMenuOpen ? "" : ""
     }`}>
-      <div className="w-[20%] flex items-center text-white font-bold justify-start px-10">
+      <div className="w-[20%] flex items-center text-white font-bold justify-start px-10 transition duration-500 ease-in-out ">
         <button className={`transition duration-500 ease-in-out 
         ${  isMenuOpen ? "transform rotate-180" : ""}`} type="button" onClick={toggleMenu} >
         {isMenuOpen ? (
@@ -28,7 +28,7 @@ const TopMenu = () => {
         </svg>
         ) : (
           <svg
-            className="w-8 h-8 fill-current text-white hover:text-gray-300"
+            className="w-8 h-8 fill-current text-white hover:text-gray-400 transition duration-500 ease-in-out "
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -52,12 +52,12 @@ const TopMenu = () => {
         </Link>
       </div>
       <div className="flex items-center w-[20%] justify-center relative">
-        <button className="px-3 py-2.5 text-white font-bold rounded-lg hover:bg-white hover:bg-opacity-10">
+        <button className="px-3 py-2.5 text-white font-bold transition duration-500 ease-in-out rounded-lg hover:bg-white hover:bg-opacity-10">
           Premium
         </button>
         <Link
           href="/profile"
-          className="ml-5 hover:bg-white hover:bg-opacity-10 px-2 py-2 rounded-lg"
+          className="ml-5 hover:bg-white hover:bg-opacity-10 px-2 py-2 rounded-lg transition duration-500 ease-in-out"
         >
           <Image
             src="/img/user.png"
