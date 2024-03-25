@@ -15,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="overflow-x-hidden overflow-y-scroll no-scrollbar">
+      <body className={inter.className}>
+        {children}
+        </body>
     </html>
   );
 }
