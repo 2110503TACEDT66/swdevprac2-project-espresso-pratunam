@@ -12,27 +12,12 @@ const TopMenu = () => {
   };
 
   return (
-    <div className="w-screen h-20 backdrop-blur-md backdrop-brightness-[70%] fixed top-0 z-[1] flex justify-between">
+    <div className={` w-screen h-20 fixed top-0 z-[1] flex justify-between${
+      isMenuOpen ? "" : ""
+    }`}>
       <div className="w-[20%] flex items-center text-white font-bold justify-start px-10">
-        {/* <button
-          className="transition duration-500 ease-in-out"
-          type="button"
-          onClick={toggleMenu}
-        >
-          <svg
-            className="w-8 h-8 fill-current text-white hover:text-gray-300"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6 10a1 1 0 011-1h8a1 1 0 110 2H7a1 1 0 01-1-1zM5 15a1 1 0 011-1h10a1 1 0 110 2H6a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button> */}
         <button className={`transition duration-200 ease-in-out 
-        ${  isMenuOpen ? "transform rotate-90" : ""}`} type="button" onClick={toggleMenu} >
+        ${  isMenuOpen ? "transform rotate-180" : ""}`} type="button" onClick={toggleMenu} >
         {isMenuOpen ? (
           <svg
           className="w-8 h-8 fill-current text-white"
