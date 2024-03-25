@@ -7,6 +7,7 @@ const TopMenu = async() => {
     <div className="w-screen h-20 backdrop-blur-md backdrop-brightness-[70%] fixed top-0 z-[1] flex justify-between">
       <div className="w-[20%] flex items-center text-white font-bold justify-start px-10">Menu</div>
       <div className="h-full w-[20%] flex items-center justify-center">
+        <Link href="/">
         <Image
           src="/img/logo.png"
           width={50}
@@ -14,6 +15,7 @@ const TopMenu = async() => {
           objectFit="cover"
           alt="logo"
         />
+        </Link>
       </div>
       <div className="flex items-center w-[20%] justify-center relative">
         <button

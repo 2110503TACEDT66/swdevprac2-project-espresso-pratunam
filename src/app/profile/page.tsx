@@ -7,24 +7,27 @@ import Image from "next/image";
 const profilePage = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <main className="relative h-screen w-screen flex flex-col justify-center bg-slate-900">
+    <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818]">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
-          <h1 className="text-white text-5xl mb-10">
+          <h1 className="text-white text-5xl mb-5">
             Hi, {session?.user?.name}!
           </h1>
-          <div className="w-[45%] h-[65%] bg-white flex flex-col rounded-2xl">
+          <h1 className="text-white text-xl mb-10">
+            This is your expresso pratunam car renting license
+          </h1>
+          <div className="w-[45%] h-[55%] bg-white flex flex-col rounded-2xl shadow-[0_0_200px_50px_rgba(255,255,255,0.2)] ">
             <div className="w-full h-[20%] bg-black rounded-t-2xl flex justify-center items-center">
               <h1 className="text-4xl text-white">Espresso License</h1>
             </div>
             <div className="w-full h-[80%] p-5 flex flex-row justify-between">
-              <div className="w-[35%] h-full object-cover object-center bg-black">
+              <div className="w-[35%] h-full bg-black relative border-2	border-black">
                 <Image
                   src="/img/portrait.jpg"
+                  layout="fill"
                   alt="portraitPic"
-                  height={200}
-                  width={200}
+                  objectFit="cover"
                 />
               </div>
 
