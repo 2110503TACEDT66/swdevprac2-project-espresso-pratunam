@@ -12,6 +12,10 @@ const EditFormPopup: React.FC<{ isOpen: boolean, onClose: () => void, bookingDat
   
     const [editedBooking, setEditedBooking] = useState(bookingData);
 
+    const handleDateRangeChange = (newDateRange: DateRange<Dayjs>) => {
+      setSelectedRange(newDateRange);
+    };
+
     // const handleChange = (e:any) => {
     //   const { name, value } = e.target;
     //   setEditedBooking((prevBooking) => ({
@@ -26,9 +30,9 @@ const EditFormPopup: React.FC<{ isOpen: boolean, onClose: () => void, bookingDat
     //   onClose();
     // };
 
-    const [value, setValue] = React.useState<DateRange<Dayjs>>([
+    const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
       dayjs(),
-      dayjs().add(1, 'day'),
+      dayjs().add(1, "day"),
     ]);
   
   return (
@@ -36,7 +40,7 @@ const EditFormPopup: React.FC<{ isOpen: boolean, onClose: () => void, bookingDat
       <div className="bg-white p-8 rounded shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Edit Booking</h2>
         {/* <form onSubmit={handleSubmit}> */}
-        <DateRangePickerComponent selectedRange={value} onDateRangeChange={(newValue: React.SetStateAction<DateRange<dayjs.Dayjs>>) => {setValue(newValue)}}></DateRangePickerComponent>
+        <DateRangePickerComponent onDateRangeChange={handleDateRangeChange}></DateRangePickerComponent>
         <form className="mt-4">
           <div className="flex justify-end">
             <button
