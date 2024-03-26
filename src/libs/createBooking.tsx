@@ -1,5 +1,5 @@
-'use server'
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+"use server";
+import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
 
 export default async function createBooking(
@@ -8,12 +8,12 @@ export default async function createBooking(
   startDate: Date,
   endDate: Date
 ) {
-    const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
   const response = await fetch(`http://localhost:8000/cars/${carId}/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "authorization": `Bearer ${session?.user?.token}`
+      authorization: `Bearer ${session?.user?.token}`,
     },
     body: JSON.stringify({
       ProviderID: providerId,
