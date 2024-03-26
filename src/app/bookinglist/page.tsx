@@ -1,8 +1,14 @@
-import React from "react";
+'use client'
+import React,{ useState } from "react";
 import TopMenuBlack from "@/components/topMenuBlack";
 import Image from "next/image";
+import EditFormPopup from "@/components/editpopup";
 
 const CarListPage = () => {
+
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+
   const mockBookings = [
     {
       id: 1,
@@ -28,6 +34,17 @@ const CarListPage = () => {
 //     console.log("Canceling booking with ID:", bookingId);
 //   };
 
+const handleEditBooking = (bookingId:any) => {
+  const booking = mockBookings.find((booking) => booking.id === bookingId);
+  setSelectedBooking(null);
+  setShowEditPopup(true);
+};
+
+const handleCloseEditPopup = () => {
+  setShowEditPopup(false);
+  setSelectedBooking(null);
+};
+
   return (
     <main className="relative">
       <TopMenuBlack />
@@ -41,7 +58,6 @@ const CarListPage = () => {
               <Image
                 src={booking.imgSrc}
                 alt={booking.carModel}
-                // layout="fill"
                 width={300}
                 height={200}
                 objectFit="cover"
@@ -56,7 +72,7 @@ const CarListPage = () => {
               <div className="flex ">
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 gap-2 mr-2"
-                //   onClick={() => handleEditBooking(booking.id)}
+                  onClick={() => handleEditBooking(booking.id)}
                 >
                   Edit
                 </button>
@@ -64,13 +80,14 @@ const CarListPage = () => {
                   className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                 //   onClick={() => handleCancelBooking(booking.id)}
                 >
-                  Cancel
+                  Delete
                 </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <EditFormPopup isOpen={showEditPopup} onClose={handleCloseEditPopup} bookingData={selectedBooking} />
     </main>
   );
 };
