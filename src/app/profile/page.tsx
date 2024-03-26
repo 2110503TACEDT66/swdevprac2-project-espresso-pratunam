@@ -6,14 +6,13 @@ import Image from "next/image";
 
 const profilePage = async () => {
   const session = await getServerSession(authOptions);
-  console.log(`Session : ${session?.user?.user.name}`)
   return (
     <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
           <h1 className="text-white text-5xl mb-5">
-            Hi, {session?.user?.user.name}!
+            Hi, {session?.user?.user.name}
           </h1>
           <h1 className="text-white text-xl mb-10">
             This is your expresso pratunam car renting license
@@ -50,15 +49,6 @@ const profilePage = async () => {
               </div>
             </div>
           </div>
-          {/* <p className="text-stone-800 m-1">
-            <a href="#" className="hover:underline hover:text-slate-400">
-              View your booking
-            </a>
-          </p>
-            <a href="#" className="hover:underline hover:text-slate-400 text-stone-800 m-1">
-              Profile Setting
-            </a>
-          <Link href="/api/auth/signout"> Logout</Link> */}
         </div>
       ) : (
         <div className="text-slate-200 h-screen w-screen flex items-center justify-center bg-black">

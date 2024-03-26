@@ -1,6 +1,4 @@
-// next-auth.d.ts (or your existing types file)
 import NextAuth from "next-auth";
-import type { DefaultSession } from "next-auth"; // Import the base Session type
 
 // Define Interfaces
 interface UserType {
