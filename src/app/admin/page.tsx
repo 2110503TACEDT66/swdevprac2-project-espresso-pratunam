@@ -5,7 +5,7 @@ import Image from "next/image";
 import EditFormPopup from "@/components/editpopup";
 import DeletePopup from "@/components/deletepopup";
 
-const adminview = () => {
+const Adminview = () => {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -100,4 +100,4 @@ const handleClosePopup = () => {
   );
 };
 
-export default adminview;
+export default Adminview;
