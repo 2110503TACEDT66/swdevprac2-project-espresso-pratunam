@@ -3,6 +3,12 @@ import Image from "next/image";
 interface Props {
   name: string;
   imgSrc: string;
+  brand: string;
+  model: string;
+  year: number;
+  color: string;
+  type: string;
+  registrationNumber: string,
   zeroToHundred: number;
   topSpeed: number;
   engineLitre: number;
@@ -27,8 +33,8 @@ const CarCard = ({
           className="rounded-t-lg"
         />
       </div>
-      <div>
-        <h2 className="text-xl font-semibold text-black mt-1 mb-1 ml-1 text-center">{name}</h2>
+      <div className="flex flex-col justify-center items-center h-[30%]">
+        <h2 className="text-xl font-semibold text-black text-center mb-1">{name}</h2>
         <div className="text-black text-sm flex flex-row justify-between w-full">
           <div className="text-center w-[30%]">
             <h3 className="font-bold text-md">{zeroToHundred} s</h3>
