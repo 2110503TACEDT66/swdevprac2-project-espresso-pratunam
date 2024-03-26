@@ -48,7 +48,7 @@ const CarDetailPage = () => {
             </div>
           </div>
         </div>
-        <div className="w-[40%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center">
+        <div className="w-[45%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center ">
           <div className="w-full" >
             <h1 className="text-4xl mb-5 font-semibold">Ford Mustang GT</h1>
             <div className="mb-5 flex flex-row">
@@ -75,14 +75,12 @@ const CarDetailPage = () => {
               <h1 className="font-medium">Registration Number:  </h1>
               <h1 className="ml-1">FGT3553</h1>
             </div>
-            <div>
-              <table className="text-lg font-medium mt-10 mb-10  flex items-center justify-center w-full ">
-                <tbody>
-                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow-lg text-center ">Zerotohundred <hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
-                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow-lg text-center ">Topspeed<hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
-                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow- text-center ">Engine Litre<hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
-                </tbody>
-              </table>
+              <div className="text-lg font-medium mt-10 mb-10  flex items-center justify-center w-full ">
+                <div className="flex flex-row w-[100%] h-[100%]">
+                  <div className=" bg-gray-100  hover:bg-black hover:text-white  p-5 shadow-lg text-center m-1 rounded-lg w-[34%] mb-1 hover:shadow-[0_0_20px_3px_rgba(0,0,255,0.1)]">Zero to hundred <hr className="border-gray-400 w-full p-0"></hr><div className="text-2xl flex items-center justify-center font-semibold mt-2 " >4.9</div></div>
+                  <div className="bg-gray-100  hover:bg-black hover:text-white  p-5 shadow-lg text-center m-1 rounded-lg w-[33%] mb-1 hover:shadow-[0_0_20px_3px_rgba(0,0,255,0.1)]">Top speed<hr className="border-gray-400 w-full p-0"></hr><div className="text-2xl flex items-center justify-center font-semibold mt-2 ">180</div></div>
+                  <div className=" bg-gray-100  hover:bg-black hover:text-white  p-5 shadow-lg text-center m-1  rounded-lg w-[33%] mb-1 hover:shadow-[0_0_20px_3px_rgba(0,0,255,0.1)]">Engine Litre<hr className="border-gray-400 w-full p-0"></hr><div className="text-2xl flex items-center justify-center font-semibold mt-2 ">5.0</div></div>
+                </div>
             </div>
 
 
@@ -98,7 +96,7 @@ const CarDetailPage = () => {
             <DateRangePickerComponent selectedRange={value} onDateRangeChange={(newValue: React.SetStateAction<DateRange<dayjs.Dayjs>>) => {setValue(newValue)}}></DateRangePickerComponent>
           </div>
           <div className="w-[80%] flex flex-col items-center mt-10">
-            <button className="w-[100%] py-6 bg-yellow-950 text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]" onClick={bookingHandler}>
+            <button className="w-[100%] py-6 bg-black text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]" onClick={bookingHandler}>
               BOOK
             </button>
           </div>
