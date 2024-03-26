@@ -5,8 +5,9 @@ import Image from "next/image";
 import React from "react";
 import { DateRange } from '@mui/x-date-pickers-pro/models';
 import dayjs, { Dayjs } from 'dayjs';
+import{ carData} from "../../carlist/page";
 
-const CarDetailPage = () => {
+const CarDetailPage = ({params}:{params:{name: string}}) => {
     const [value, setValue] = React.useState<DateRange<Dayjs>>([
         dayjs(),
         dayjs().add(1, 'day'),
@@ -23,6 +24,11 @@ const CarDetailPage = () => {
             console.log("Please select a date range");
         }
     }
+    const decodedName = decodeURIComponent(params.name);
+    console.log(decodedName);
+    const car = carData.find(car => car.name === decodedName);
+   
+
   return (
     <main className="relative overflow-hidden">
       <div className="w-screen h-screen bg-white flex flox-rows">
@@ -38,7 +44,7 @@ const CarDetailPage = () => {
           <div className="w-[80%] h-[30vw] bg-white rounded-2xl abolute z-10 flex justify-center items-center shadow-[0_0_100px_50px_rgba(255,255,255,0.2)]">
             <div className="w-[100%] h-[100%] relative rounded-2xl">
               <Image
-                src="/img/recommendMustang.jpg"
+                src={car!.imgSrc}
                 layout="fill"
                 objectFit="cover"
                 alt="LandingPageImage"
@@ -50,30 +56,30 @@ const CarDetailPage = () => {
         </div>
         <div className="w-[45%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center ">
           <div className="w-full" >
-            <h1 className="text-4xl mb-5 font-semibold">Ford Mustang GT</h1>
+            <h1 className="text-4xl mb-5 font-semibold">{car?.name}</h1>
             <div className="mb-5 flex flex-row">
              <h1 className="font-medium">Brand: </h1>
-             <h1 className="ml-1">Ford</h1>
+             <h1 className="ml-1">{car?.brand}</h1>
             </div>
             <div className="mb-5 flex flex-row">
             <h1 className="font-medium">Model:</h1>
-            <h1 className="ml-1"> Mustang GT</h1>
+            <h1 className="ml-1"> {car?.model}</h1>
             </div>
             <div className="mb-5 flex flex-row">
             <h1 className="font-medium">Year: </h1>
-            <h1 className="ml-1">2019</h1>
+            <h1 className="ml-1">{car?.year}</h1>
             </div>
             <div className="mb-5 flex flex-row">
             <h1 className="font-medium">Type: </h1>
-            <h1 className="ml-1">Other</h1>
+            <h1 className="ml-1">{car?.type}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">color:  </h1>
-              <h1 className="ml-1">Blue</h1>
+              <h1 className="ml-1">{car?.type}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Registration Number:  </h1>
-              <h1 className="ml-1">FGT3553</h1>
+              <h1 className="ml-1">{car?.registrationNumber}</h1>
             </div>
               <div className="text-lg font-medium mt-10 mb-10  flex items-center justify-center w-full ">
                 <div className="flex flex-row w-[100%] h-[100%]">
