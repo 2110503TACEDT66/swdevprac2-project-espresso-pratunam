@@ -1,11 +1,31 @@
+'use client'
+import DateRangePickerComponent from "@/components/dateRange";
 import TopMenuBlack from "@/components/topMenuBlack";
 import Image from "next/image";
+import React from "react";
+import { DateRange } from '@mui/x-date-pickers-pro/models';
+import dayjs, { Dayjs } from 'dayjs';
 
 const CarDetailPage = () => {
+    const [value, setValue] = React.useState<DateRange<Dayjs>>([
+        dayjs(),
+        dayjs().add(1, 'day'),
+      ]);
+
+      const bookingHandler = () => {
+        if (value) { // Check if a date range is selected
+            const startDate = value[0]?.format('YYYY-MM-DD'); // Format if needed
+            const endDate = value[1]?.format('YYYY-MM-DD'); // Format if needed
+
+            console.log("Start Date:", startDate);
+            console.log("End Date:", endDate);
+        } else {
+            console.log("Please select a date range");
+        }
+    }
   return (
     <main className="relative overflow-hidden">
-      <TopMenuBlack />
-      <div className="w-screen h-[93vh] bg-white flex flox-rows">
+      <div className="w-screen h-screen bg-white flex flox-rows">
         <div className=" w-[60%] h-full flex justify-center items-center relative">
           <Image
             layout="fill"
@@ -30,7 +50,7 @@ const CarDetailPage = () => {
         </div>
         <div className="w-[40%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center">
           <div>
-            <h1 className="text-4xl mb-5">Car Details</h1>
+            <h1 className="text-4xl mb-5">Ford Mustang GT</h1>
             <p className="mb-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
               ullamcorper ligula ut mattis elementum. In porttitor, leo vel
@@ -64,10 +84,11 @@ const CarDetailPage = () => {
           </div>
 
           <div className="w-full">
-            <h1 className="text-4xl">Booking this car</h1>
+            <h1 className="text-4xl">Book this car</h1>
+            <DateRangePickerComponent selectedRange={value} onDateRangeChange={(newValue: React.SetStateAction<DateRange<dayjs.Dayjs>>) => {setValue(newValue)}}></DateRangePickerComponent>
           </div>
-          <div className="absolute bottom-0 w-[80%] flex flex-col items-center">
-            <button className="w-[80%] py-6 bg-yellow-950 text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]">
+          <div className="w-[80%] flex flex-col items-center mt-10">
+            <button className="w-[100%] py-6 bg-yellow-950 text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]" onClick={bookingHandler}>
               BOOK
             </button>
           </div>
