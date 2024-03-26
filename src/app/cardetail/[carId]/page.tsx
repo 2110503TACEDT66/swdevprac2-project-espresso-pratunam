@@ -8,6 +8,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { carData } from "../../carlist/page";
 import getOneCar from "@/libs/getOneCar";
 import { Car } from "@/interface/getAllCarsInterface";
+import createBooking from "@/libs/createBooking";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
@@ -21,7 +22,17 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
     setSelectedRange(newDateRange);
   };
 
-
+  const handleBooking = async () =>{
+    try{
+      setLoading(true);
+      const createBookingFetching  = await createBooking(car!._id,car!.ProviderID,selectedRange[0]!.toDate(),selectedRange[1]!.toDate());
+      console.log(createBookingFetching)
+      setLoading(false)
+    }catch (error) {
+      console.error("Error create booking", error);
+      setLoading(true); // Handle error case
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
