@@ -9,6 +9,7 @@ import dayjs, { Dayjs } from "dayjs";
 import getOneCar from "@/libs/getOneCar";
 import { Car } from "@/interface/interface";
 import createBooking from "@/libs/createBooking";
+import { useRouter } from "next/navigation";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
@@ -17,6 +18,8 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   ]);
   const [isLoading, setLoading] = React.useState(true);
   const [car, setCar] = React.useState<Car | null>(null);
+
+  const router = useRouter();
 
   const handleDateRangeChange = (newDateRange: DateRange<Dayjs>) => {
     setSelectedRange(newDateRange);
@@ -28,6 +31,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
       const createBookingFetching  = await createBooking(car!._id,car!.ProviderID,selectedRange[0]!.toDate(),selectedRange[1]!.toDate());
       console.log(createBookingFetching)
       setLoading(false)
+      router.push("/bookinglist")
     }catch (error) {
       console.error("Error create booking", error);
       setLoading(true); // Handle error case

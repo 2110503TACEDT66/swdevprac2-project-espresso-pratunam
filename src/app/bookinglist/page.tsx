@@ -161,7 +161,6 @@ const BookingListPage = () => {
         onClose={handleClosePopup}
         bookingId={selectedBooking}
       />
-      {/* <DeletePopup onDelete={handleClosePopup} onClose={handleClosePopup} booking={selectedBooking} /> */}
       <DeletePopup
         isOpen={showDeletePopup}
         onClose={handleClosePopup}
