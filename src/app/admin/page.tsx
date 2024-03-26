@@ -5,7 +5,7 @@ import Image from "next/image";
 import EditFormPopup from "@/components/editpopup";
 import DeletePopup from "@/components/deletepopup";
 
-const BookingListPage = () => {
+const adminview = () => {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -28,22 +28,12 @@ const BookingListPage = () => {
     },
   ];
 
-//   const handleEditBooking = (bookingId) => {
-//     console.log("Editing booking with ID:", bookingId);
-//   };
-
-//   const handleCancelBooking = (bookingId) => {
-//     console.log("Canceling booking with ID:", bookingId);
-//   };
-
 const handleEditBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
   setSelectedBooking(null);
   setShowEditPopup(true);
 };
 
 const handleDeleteBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
   setSelectedBooking(null);
   setShowDeletePopup(true);
 };
@@ -57,11 +47,11 @@ const handleClosePopup = () => {
 
 
   return (
-    <main className="relative ">
+    <main className="relative">
       <TopMenuBlack />
-      <div className="w-screen mx-auto py-[20vh] h-screen bg-black">
+      <div className="w-screen mx-auto py-[20vh] bg-black">
         <h1 className="text-white text-4xl font-semibold px-10 mt-5 mb-5 text-center">
-          Your Car Booking List
+          All Car Booking List
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
           {mockBookings.map((booking) => (
@@ -110,4 +100,4 @@ const handleClosePopup = () => {
   );
 };
 
-export default BookingListPage;
+export default adminview;
