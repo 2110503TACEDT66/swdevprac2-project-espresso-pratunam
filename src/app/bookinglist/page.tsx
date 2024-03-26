@@ -59,7 +59,7 @@ const handleClosePopup = () => {
   return (
     <main className="relative bg-slate-100">
       <TopMenuBlack />
-      <div className="w-screen mx-auto my-[20vh] h-screen">
+      <div className="w-screen mx-auto py-[20vh] h-screen">
         <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5 text-center">
           Your Car Booking List
         </h1>
