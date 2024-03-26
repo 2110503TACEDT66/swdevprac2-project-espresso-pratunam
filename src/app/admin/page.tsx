@@ -66,10 +66,10 @@ const handleClosePopup = () => {
                 className="w-full h-40 object-cover mb-4"
               />
               <h2 className="text-xl font-semibold mb-2 text-gray-700">{booking.carModel}</h2>
-              <p className="text-gray-500 mb-2">
+              <p className="text-gray-600 mb-2">
                 Rental Duration: {booking.rentalDuration}
               </p>
-              <p className="text-gray-500 mb-2">Price: THB {booking.price}</p>
+              <p className="text-gray-600 mb-2">Price: THB {booking.price}</p>
               <div className="flex ">
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 gap-2 mr-2"
