@@ -49,42 +49,52 @@ const CarDetailPage = () => {
           </div>
         </div>
         <div className="w-[40%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center">
-          <div>
-            <h1 className="text-4xl mb-5">Ford Mustang GT</h1>
-            <p className="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ullamcorper ligula ut mattis elementum. In porttitor, leo vel
-              varius semper, urna nulla rutrum arcu, sit amet fringilla felis
-              est eget erat.
-            </p>
-            <p className="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ullamcorper ligula ut mattis elementum. In porttitor, leo vel
-              varius semper, urna nulla rutrum arcu, sit amet fringilla felis
-              est eget erat.
-            </p>
-            <p className="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ullamcorper ligula ut mattis elementum. In porttitor, leo vel
-              varius semper, urna nulla rutrum arcu, sit amet fringilla felis
-              est eget erat.
-            </p>
-            <p className="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ullamcorper ligula ut mattis elementum. In porttitor, leo vel
-              varius semper, urna nulla rutrum arcu, sit amet fringilla felis
-              est eget erat.
-            </p>
-            <p className="mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ullamcorper ligula ut mattis elementum. In porttitor, leo vel
-              varius semper, urna nulla rutrum arcu, sit amet fringilla felis
-              est eget erat.
-            </p>
+          <div className="w-full" >
+            <h1 className="text-4xl mb-5 font-semibold">Ford Mustang GT</h1>
+            <div className="mb-5 flex flex-row">
+             <h1 className="font-medium">Brand: </h1>
+             <h1 className="ml-1">Ford</h1>
+            </div>
+            <div className="mb-5 flex flex-row">
+            <h1 className="font-medium">Model:</h1>
+            <h1 className="ml-1"> Mustang GT</h1>
+            </div>
+            <div className="mb-5 flex flex-row">
+            <h1 className="font-medium">Year: </h1>
+            <h1 className="ml-1">2019</h1>
+            </div>
+            <div className="mb-5 flex flex-row">
+            <h1 className="font-medium">Type: </h1>
+            <h1 className="ml-1">Other</h1>
+            </div>
+            <div className="mb-5 flex flex-row">
+              <h1 className="font-medium">color:  </h1>
+              <h1 className="ml-1">Blue</h1>
+            </div>
+            <div className="mb-5 flex flex-row">
+              <h1 className="font-medium">Registration Number:  </h1>
+              <h1 className="ml-1">FGT3553</h1>
+            </div>
+            <div>
+              <table className="text-lg font-medium mt-10 mb-10  flex items-center justify-center w-full ">
+                <tbody>
+                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow-lg text-center ">Zerotohundred <hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
+                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow-lg text-center ">Topspeed<hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
+                  <td className="border-black bg-gray-100 border-2 hover:bg-black hover:text-white  p-5 shadow- text-center ">Engine Litre<hr></hr><tr className="text-2xl flex items-center justify-center font-semibold">125</tr></td>
+                </tbody>
+              </table>
+            </div>
+
+
+            <div className="flex flex-row mb-3 ">
+              <h1 className="text-2xl mr-1 font-semibold">THB 22000</h1>
+              <h1  className="text-lg " >/ day</h1>
+            </div>
+
           </div>
 
           <div className="w-full">
-            <h1 className="text-4xl">Book this car</h1>
+            <h1 className="text-4xl flex items-center justify-center m-5 ">Book this car</h1>
             <DateRangePickerComponent selectedRange={value} onDateRangeChange={(newValue: React.SetStateAction<DateRange<dayjs.Dayjs>>) => {setValue(newValue)}}></DateRangePickerComponent>
           </div>
           <div className="w-[80%] flex flex-col items-center mt-10">
