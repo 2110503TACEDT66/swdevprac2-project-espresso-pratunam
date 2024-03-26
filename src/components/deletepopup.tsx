@@ -22,14 +22,14 @@ const DeletePopup: React.FC<{
           <div className="flex justify-end">
             <button
               type="button"
-              className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md mr-2"
+              className="bg-red-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-600"
               onClick={onClose}
             >
               Cancel
             </button>
             <button
               type="button"
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
               onClick={handleDelete}
             >
               Confirm
