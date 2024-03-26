@@ -51,7 +51,7 @@ const mockCars = [
   },
 ];
 
-export const carData = [
+const carData = [
     {
         name: "Honda Civic",
         brand: "Honda",
