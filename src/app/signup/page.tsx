@@ -1,17 +1,20 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { FaAngleLeft } from "react-icons/fa6";
+import {connectToMongo} from "@/dbconfig/dbconfig";
 
 export default function SignUpPage() {
+    connectToMongo()
   const router = useRouter();
   const [user, setUser] = React.useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
+    role: "user",
+    phone: "",
+    createAt: new Date().toISOString(),
   });
 
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
@@ -20,29 +23,28 @@ export default function SignUpPage() {
   const onSignUp = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/signup", user);
-      console.log("signup okay", response.data);
+      const response = await axios.post("/sign-up", user);
+      console.log(response.data)
+      router.push("/signin");
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
     } finally {
       setLoading(false);
-      router.push("/signin");
     }
   };
 
   useEffect(() => {
     if (
       user.email.length > 0 &&
-      user.username.length > 0 &&
-      user.password.length > 0
+      user.name.length > 0 &&
+      user.password.length > 0 &&
+      user.phone.length > 0
     ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
   }, [user]);
-
-  console.log(user);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-screen bg-black">
@@ -53,9 +55,9 @@ export default function SignUpPage() {
         <input
           type="text"
           id="username"
-          value={user.username}
+          value={user.name}
           placeholder="Enter your username..."
-          onChange={(e) => setUser({ ...user, username: e.target.value })}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
           className="text-xl w-[80%] pl-2 border-2 border-white rounded-lg py-2 bg-black text-white"
         />
         <input
@@ -64,6 +66,14 @@ export default function SignUpPage() {
           value={user.email}
           placeholder="Enter your email..."
           onChange={(e) => setUser({ ...user, email: e.target.value })}
+          className="text-xl w-[80%] pl-2 border-2 border-white rounded-lg py-2 bg-black text-white"
+        />
+        <input
+          type="phone"
+          id="phone"
+          value={user.phone}
+          placeholder="Enter your phone..."
+          onChange={(e) => setUser({ ...user, phone: e.target.value })}
           className="text-xl w-[80%] pl-2 border-2 border-white rounded-lg py-2 bg-black text-white"
         />
         <input
@@ -78,7 +88,7 @@ export default function SignUpPage() {
         {buttonDisabled ? (
           <button
             disabled={buttonDisabled}
-            className="text-white text-xl px-4 py-2 hover:shadow-[0_0_60px_20px_rgba(255,0,0,0.1)] rounded-lg"
+            className=" flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-medium text-white bg-black  hover:text-green-600  "
           >
             Please provide your information.
           </button>
@@ -86,7 +96,7 @@ export default function SignUpPage() {
           <button
             onClick={onSignUp}
             disabled={buttonDisabled}
-            className="text-white text-xl px-4 py-2 hover:text-green-600 rounded-lg hover:shadow-[0_0_40px_10px_rgba(0,255,255,0.1)]"
+            className="text-white text-xlflex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-medium hover:bg-indigo-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
           >
             Register
           </button>
