@@ -7,7 +7,7 @@ import { DateRange } from "@mui/x-date-pickers-pro/models";
 import dayjs, { Dayjs } from "dayjs";
 import { carData } from "../../carlist/page";
 import getOneCar from "@/libs/getOneCar";
-import { Car } from "@/interface/getAllCarsInterface";
+import { Car } from "@/interface/interface";
 import createBooking from "@/libs/createBooking";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {

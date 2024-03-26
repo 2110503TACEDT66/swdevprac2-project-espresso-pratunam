@@ -7,17 +7,6 @@ export interface Provider {
     __v: number;
 }
 
-export interface Booking {
-    _id: string;
-    UserID: string;
-    CarID: string;
-    ProviderID: string;
-    StartDate: string; // ISO Date String format
-    EndDate: string; // ISO Date String format
-    createdAt: string; // ISO Date String format
-    __v: number;
-}
-
 export interface Car {
     _id: string;
     Brand: string;
@@ -38,3 +27,17 @@ export interface Car {
     zerotohundred: number;
     imgsrc: string;
 }
+
+export interface Booking {
+    CarID: string;
+    EndDate: string | Date;
+    ProviderID: string;
+    StartDate: string | Date;
+    UserID: {
+      _id: string;
+      name: string;
+      email: string;
+    };
+    createdAt: string | Date;
+    id: string;
+  }

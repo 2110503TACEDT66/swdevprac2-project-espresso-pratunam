@@ -3,7 +3,7 @@ import RecommendCard from "@/components/recommendCard";
 import TopMenuBlack from "@/components/topMenuBlack";
 import getAllCars from "@/libs/getAllCars";
 import Link from "next/link";
-import { Car } from "@/interface/getAllCarsInterface";
+import { Car } from "@/interface/interface";
 
 const mockCars = [
   {

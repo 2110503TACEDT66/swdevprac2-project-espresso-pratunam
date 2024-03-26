@@ -1,15 +1,21 @@
-'use client'
-import React,{ useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import TopMenuBlack from "@/components/topMenuBlack";
 import Image from "next/image";
 import EditFormPopup from "@/components/editpopup";
 import DeletePopup from "@/components/deletepopup";
+import getBookings from "@/libs/getBookings";
+import { Booking, Car } from "@/interface/interface";
+import getAllCars from "@/libs/getAllCars";
+import deleteBooking from "@/libs/deleteBooking";
 
 const BookingListPage = () => {
-
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [selectedBooking, setSelectedBooking] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [bookings, setBookings] = useState(null);
+  const [cars, setCars] = useState<Car[]>();
 
   const mockBookings = [
     {
@@ -28,33 +34,65 @@ const BookingListPage = () => {
     },
   ];
 
-//   const handleEditBooking = (bookingId) => {
-//     console.log("Editing booking with ID:", bookingId);
-//   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const bookingFetch = await getBookings();
+        // console.log(bookingFetch);
+        const bookings = bookingFetch["data"];
+        console.log(bookings);
+        setBookings(bookings);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(`Error from getBookings: ${error}`);
+      }
+    };
+    const fetchCars = async () => {
+      try {
+        setIsLoading(true);
+        const carsFetch = await getAllCars();
+        // console.log(carsFetch);
+        const cars = carsFetch["data"];
+        console.log(cars);
+        setCars(cars);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(`Error from getBookings: ${error}`);
+      }
+    };
 
-//   const handleCancelBooking = (bookingId) => {
-//     console.log("Canceling booking with ID:", bookingId);
-//   };
+    fetchData();
+    fetchCars();
+  }, []);
 
-const handleEditBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
-  setSelectedBooking(null);
-  setShowEditPopup(true);
-};
+  if (!bookings) {
+    return <p className="text-white">Cannot Fetch Bookings</p>;
+  }
 
-const handleDeleteBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
-  setSelectedBooking(null);
-  setShowDeletePopup(true);
-};
+  if (!cars) {
+    return <p className="text-white">Cannot Fetch Cars</p>;
+  }
 
-const handleClosePopup = () => {
-  setShowEditPopup(false);
-  setShowDeletePopup(false);
-  setSelectedBooking(null);
-};
+  if (isLoading) {
+    return <p className="text-white">Loading Data</p>;
+  }
 
+  const handleEditBooking = (bookingId: any) => {
+    setSelectedBooking(bookingId);
+    setShowEditPopup(true);
+  };
 
+  const handleDeleteBooking = async (bookingId: string) => {
+    setSelectedBooking(bookingId);
+    setShowDeletePopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowEditPopup(false);
+    setShowDeletePopup(false);
+    setSelectedBooking("");
+  };
 
   return (
     <main className="relative ">
@@ -64,22 +102,42 @@ const handleClosePopup = () => {
           Your Car Booking List
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
-          {mockBookings.map((booking) => (
-            <div key={booking.id} className="border p-4 rounded-md bg-slate-100 shadow-md">
-              <Image
-                src={booking.imgSrc}
-                alt={booking.carModel}
-                width={300}
-                height={200}
-                objectFit="cover"
-                objectPosition="center"
-                className="w-full h-[15rem] object-cover mb-4"
-              />
-              <h2 className="text-xl font-semibold mb-2 text-gray-700">{booking.carModel}</h2>
-              <p className="text-gray-600 mb-2">
-                Rental Duration: {booking.rentalDuration}
-              </p>
-              <p className="text-gray-600 mb-2">Price: THB {booking.price}</p>
+          {(bookings as unknown as Booking[]).map((booking: Booking) => (
+            <div
+              key={booking.id}
+              className="border p-4 rounded-md bg-slate-100 shadow-md"
+            >
+              {cars.find((car: Car) => car._id === booking.CarID) ? (
+                <>
+                  <Image
+                    src={
+                      cars.find((car: Car) => car._id === booking.CarID)!.imgsrc
+                    }
+                    alt={booking.CarID}
+                    width={300}
+                    height={200}
+                    objectFit="cover"
+                    objectPosition="center"
+                    className="w-full h-[15rem] object-cover mb-4"
+                  />
+                  <h2 className="text-xl font-semibold mb-2 text-gray-700">
+                    {cars.find((car: Car) => car._id === booking.CarID)!.Model}
+                  </h2>
+                  <p className="text-gray-600 mb-2">
+                    {booking.StartDate.toString()!}
+                  </p>
+                  <p className="text-gray-600 mb-2">
+                    Price: THB{" "}
+                    {
+                      cars.find((car: Car) => car._id === booking.CarID)!
+                        .priceperday
+                    }
+                  </p>
+                </>
+              ) : (
+                <p>Car data not found</p>
+              )}
+
               <div className="flex ">
                 <button
                   className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 gap-2 mr-2"
@@ -98,13 +156,16 @@ const handleClosePopup = () => {
           ))}
         </div>
       </div>
-      <EditFormPopup isOpen={showEditPopup} onClose={handleClosePopup} bookingData={selectedBooking} />
+      <EditFormPopup
+        isOpen={showEditPopup}
+        onClose={handleClosePopup}
+        bookingId={selectedBooking}
+      />
       {/* <DeletePopup onDelete={handleClosePopup} onClose={handleClosePopup} booking={selectedBooking} /> */}
       <DeletePopup
         isOpen={showDeletePopup}
         onClose={handleClosePopup}
-        onDelete={handleClosePopup}
-        booking={selectedBooking}
+        bookingId={selectedBooking}
       />
     </main>
   );

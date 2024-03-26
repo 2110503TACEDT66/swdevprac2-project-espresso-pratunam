@@ -1,24 +1,27 @@
+import { Booking } from "@/interface/interface";
+import deleteBooking from "@/libs/deleteBooking";
 import React from "react";
 
 const DeletePopup: React.FC<{
   isOpen: boolean;
-  booking: any;
+  bookingId: string;
   onClose: () => void;
-  onDelete: (bookingId: string) => void;
-}> = ({ isOpen, booking, onClose, onDelete }) => {
-  const handleDelete = () => {
-    onDelete(booking.id);
+}> = ({ isOpen, bookingId, onClose }) => {
+  const handleDelete = async () => {
+    await deleteBooking(bookingId);
     onClose();
   };
 
   return (
-    <div className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center ${isOpen ? "" : "hidden"}`}>
+    <div
+      className={`fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center ${
+        isOpen ? "" : "hidden"
+      }`}
+    >
       {isOpen && (
         <div className="bg-white p-8 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4">Confirm Delete</h2>
-          <p className="mb-4">
-            Are you sure you want to cancel the booking for {booking?.carModel || ""}?
-          </p>
+          <p className="mb-4">Are you sure you want to cancel the booking</p>
           <div className="flex justify-end">
             <button
               type="button"
