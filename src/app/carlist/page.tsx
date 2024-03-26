@@ -141,7 +141,6 @@ export const carData = [
 
 const CarListPage = async () => {
 const carFetched = await getAllCars()
-console.log(carFetched)
 
 const carList = carFetched['data'];
 

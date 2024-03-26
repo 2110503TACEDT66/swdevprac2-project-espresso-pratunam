@@ -14,26 +14,35 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
     dayjs(),
     dayjs().add(1, "day"),
   ]);
-
-  const [car, setCar] = React.useState<Car>();
+  const [isLoading, setLoading] = React.useState(true);
+  const [car, setCar] = React.useState<Car | null>(null);
 
   const handleDateRangeChange = (newDateRange: DateRange<Dayjs>) => {
     setSelectedRange(newDateRange);
   };
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const car = await getOneCar(params.carId);
-        setCar(car);
+        setLoading(true);
+        const carFetch = await getOneCar(params.carId);
+        console.log('carFetch:', carFetch); // Inspect the value
+        const carObj = carFetch['data']
+        setCar(carObj);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(true); // Handle error case
       }
     };
-
     fetchData();
   },[]);
-  console.log(car)
+
+
+  if (isLoading) return <p className="text-white">Loading...</p>;
+  if(!car) return <p className="text-white">Cannot find a car...</p>;
 
   return (
     <main className="relative overflow-hidden">
@@ -62,7 +71,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
         </div>
         <div className="w-[45%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center ">
           <div className="w-full">
-            <h1 className="text-4xl mb-5 font-semibold">{car?.Brand}</h1>
+            <h1 className="text-4xl mb-5 font-semibold">{car.Brand}</h1>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Brand: </h1>
               <h1 className="ml-1">{car?.Brand}</h1>
@@ -125,7 +134,8 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
             ></DateRangePickerComponent>
           </div>
           <div className="w-[80%] flex flex-col items-center mt-10">
-            <button className="w-[100%] py-6 bg-black text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]">
+            <button className="w-[100%] py-6 bg-black text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]"
+            >
               BOOK
             </button>
           </div>

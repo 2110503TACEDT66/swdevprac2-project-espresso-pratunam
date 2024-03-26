@@ -6,6 +6,7 @@ export default async function getOneCar(cardId:string) {
         },
     })
     if(!response.ok){
+        console.log(`Errorsasds : ${response.body}`)
         throw new Error("Failed to fetch Car")
     }
     return await response.json()
