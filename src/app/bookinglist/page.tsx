@@ -65,7 +65,7 @@ const handleClosePopup = () => {
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
           {mockBookings.map((booking) => (
-            <div key={booking.id} className="border p-4 rounded-md bg-white">
+            <div key={booking.id} className="border p-4 rounded-md bg-slate-100 shadow-md">
               <Image
                 src={booking.imgSrc}
                 alt={booking.carModel}
@@ -73,7 +73,7 @@ const handleClosePopup = () => {
                 height={200}
                 objectFit="cover"
                 objectPosition="center"
-                className="w-full h-40 object-cover mb-4"
+                className="w-full h-[15rem] object-cover mb-4"
               />
               <h2 className="text-xl font-semibold mb-2 text-gray-700">{booking.carModel}</h2>
               <p className="text-gray-600 mb-2">
