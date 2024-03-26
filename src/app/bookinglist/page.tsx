@@ -60,7 +60,7 @@ const handleClosePopup = () => {
     <main className="relative ">
       <TopMenuBlack />
       <div className="w-screen mx-auto py-[20vh] h-screen">
-        <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5 text-center">
+        <h1 className="text-white text-4xl font-semibold px-10 mt-5 mb-5 text-center">
           Your Car Booking List
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
