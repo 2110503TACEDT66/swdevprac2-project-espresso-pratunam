@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { DateRange } from "@mui/x-date-pickers-pro/models";
 import dayjs, { Dayjs } from "dayjs";
-import { carData } from "../../carlist/page";
+// import { carData } from "../../carlist/page";
 import getOneCar from "@/libs/getOneCar";
 import { Car } from "@/interface/interface";
 import createBooking from "@/libs/createBooking";
