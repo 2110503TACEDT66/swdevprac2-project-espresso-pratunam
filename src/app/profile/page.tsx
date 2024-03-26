@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const profilePage = async () => {
   const session = await getServerSession(authOptions);
-  console.log(`Session : ${session?.user?.user?.name}`)
+  console.log(`Session : ${session?.user?.user.name}`)
   return (
     <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
       <TopMenu></TopMenu>
