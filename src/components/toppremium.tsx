@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from "react";
 import Link from "next/link";
-import Menu from "./menuPopup";
+import MenuPre from "./menupopuppre";
 import Image from "next/image";
 
-const TopMenu = () => {
+const TopPremium = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -12,15 +12,16 @@ const TopMenu = () => {
   };
 
   return (
-    <div className={` w-screen h-20 fixed top-0 z-[1] flex justify-between${
+
+    <div className={` bg-white w-screen h-20 fixed top-0 z-[1] flex justify-between ${
       isMenuOpen ? "" : ""
     }`}>
       <div className="w-[20%] flex items-center text-white font-bold justify-start px-10 transition duration-500 ease-in-out ">
-        <button className={`transition duration-500 ease-in-out 
+        <button className={`sepia saturate-200 transition duration-500 ease-in-out 
         ${  isMenuOpen ? "transform rotate-180" : ""}`} type="button" onClick={toggleMenu} >
         {isMenuOpen ? (
           <svg
-          className="w-8 h-8 fill-current text-white"
+          className="w-8 h-8 fill-current text-yellow-500"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -28,7 +29,7 @@ const TopMenu = () => {
         </svg>
         ) : (
           <svg
-            className="w-8 h-8 fill-current text-white hover:text-gray-400 transition duration-500 ease-in-out "
+            className="w-8 h-8 fill-current text-yellow-700 hover:text-gray-400 transition duration-500 ease-in-out "
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -48,11 +49,12 @@ const TopMenu = () => {
             width={50}
             height={50}
             alt="logo"
+            className="sepia saturate-200 brightness-75"
           />
         </Link>
       </div>
       <div className="flex items-center w-[20%] justify-center relative">
-        <Link href="/premium" className="px-3 py-2.5 text-white font-bold transition duration-500 ease-in-out rounded-lg hover:bg-white hover:bg-opacity-10">
+        <Link href="/" className="px-3 py-2.5 text-yellow-600 font-bold transition duration-500 ease-in-out rounded-lg hover:bg-white hover:bg-opacity-10">
           Premium
         </Link>
         <Link
@@ -60,17 +62,18 @@ const TopMenu = () => {
           className="ml-5 hover:bg-white hover:bg-opacity-10 px-2 py-2 rounded-lg transition duration-500 ease-in-out"
         >
           <Image
-            src="/img/user.png"
+            src="/img/userpre.png"
             width={30}
             height={30}
             alt="userImage"
+            className="saturate-200 brightness-75 "
           />
         </Link>
       </div>
 
-      <Menu isMenuOpen={isMenuOpen} onMenuClose={() => setIsMenuOpen(false)} />
+      <MenuPre isMenuOpen={isMenuOpen} onMenuClose={() => setIsMenuOpen(false)} />
     </div>
   );
 };
 
-export default TopMenu;
+export default TopPremium;
