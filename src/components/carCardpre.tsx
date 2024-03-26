@@ -17,7 +17,7 @@ interface Props {
   carId:string
 }
 
-const CarCard = ({
+const CarCardpre = ({
   name,
   imgSrc,
   zeroToHundred,
@@ -68,4 +68,4 @@ const CarCard = ({
   );
 };
 
-export default CarCard;
+export default CarCardpre;

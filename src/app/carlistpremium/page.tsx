@@ -1,4 +1,4 @@
-import CarCard from "@/components/carCard";
+import CarCardpre from "@/components/carCardpre";
 import RecommendCard from "@/components/recommendCard";
 import TopPremium from "@/components/toppremium";
 import getAllCars from "@/libs/getAllCars";
@@ -199,7 +199,7 @@ const carList = carFetched['data'];
         {
             carList.map((car:Car) => {
                 return(
-                     <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id}></CarCard>
+                     <CarCardpre key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id}></CarCardpre>
                 )
             })
         }
