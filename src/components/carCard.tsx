@@ -3,6 +3,12 @@ import Image from "next/image";
 interface Props {
   name: string;
   imgSrc: string;
+  brand: string;
+  model: string;
+  year: number;
+  color: string;
+  type: string;
+  registrationNumber: string,
   zeroToHundred: number;
   topSpeed: number;
   engineLitre: number;
