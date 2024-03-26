@@ -199,7 +199,7 @@ const carList = carFetched['data'];
         {
             carList.map((car:Car) => {
                 return(
-                     <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id}></CarCard>
+                     <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id} price={car.priceperday}></CarCard>
                 )
             })
         }
