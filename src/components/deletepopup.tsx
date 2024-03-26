@@ -4,7 +4,7 @@ const DeletePopup: React.FC<{
   isOpen: boolean;
   booking: any;
   onClose: () => void;
-  onDelete: (bookingId: number) => void;
+  onDelete: (bookingId: string) => void;
 }> = ({ isOpen, booking, onClose, onDelete }) => {
   const handleDelete = () => {
     onDelete(booking.id);

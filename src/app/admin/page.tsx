@@ -5,7 +5,7 @@ import Image from "next/image";
 import EditFormPopup from "@/components/editpopup";
 import DeletePopup from "@/components/deletepopup";
 
-const BookingListPage = () => {
+const adminview = () => {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
@@ -28,22 +28,12 @@ const BookingListPage = () => {
     },
   ];
 
-//   const handleEditBooking = (bookingId) => {
-//     console.log("Editing booking with ID:", bookingId);
-//   };
-
-//   const handleCancelBooking = (bookingId) => {
-//     console.log("Canceling booking with ID:", bookingId);
-//   };
-
 const handleEditBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
   setSelectedBooking(null);
   setShowEditPopup(true);
 };
 
 const handleDeleteBooking = (bookingId:any) => {
-  const booking = mockBookings.find((booking) => booking.id === bookingId);
   setSelectedBooking(null);
   setShowDeletePopup(true);
 };
@@ -57,15 +47,15 @@ const handleClosePopup = () => {
 
 
   return (
-    <main className="relative ">
+    <main className="relative">
       <TopMenuBlack />
-      <div className="w-screen mx-auto py-[20vh] h-screen">
-        <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5 text-center">
-          Your Car Booking List
+      <div className="w-screen mx-auto py-[20vh] bg-black">
+        <h1 className="text-white text-4xl font-semibold px-10 mt-5 mb-5 text-center">
+          All Car Booking List
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
           {mockBookings.map((booking) => (
-            <div key={booking.id} className="border p-4 rounded-md bg-slate-100 shadow-md">
+            <div key={booking.id} className="border p-4 rounded-md bg-white">
               <Image
                 src={booking.imgSrc}
                 alt={booking.carModel}
@@ -73,7 +63,7 @@ const handleClosePopup = () => {
                 height={200}
                 objectFit="cover"
                 objectPosition="center"
-                className="w-full h-[15rem] object-cover mb-4"
+                className="w-full h-40 object-cover mb-4"
               />
               <h2 className="text-xl font-semibold mb-2 text-gray-700">{booking.carModel}</h2>
               <p className="text-gray-600 mb-2">
@@ -110,4 +100,4 @@ const handleClosePopup = () => {
   );
 };
 
-export default BookingListPage;
+export default adminview;
