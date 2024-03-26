@@ -9,6 +9,7 @@ interface Props {
   year: number;
   color: string;
   type: string;
+  price: number;
   registrationNumber: string,
   zeroToHundred: number;
   topSpeed: number;

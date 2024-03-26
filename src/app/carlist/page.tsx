@@ -8,25 +8,46 @@ import { Car } from "@/interface/getAllCarsInterface";
 const mockCars = [
   {
     name: "Honda Civic",
-    imgSrc: "/img/recommendCivic.jpg",
-    zeroToHundred: 8.5,
-    topSpeed: 137,
-    engineLitre: 1.5,
+        brand: "Honda",
+        model: "Civic",
+        year: 2022,
+        color: "Silver",
+        type: "Sedan",
+        registrationNumber: "ABC123",
+        price: 5000,
+        imgSrc: "/img/recommendCivic.jpg",
+        zeroToHundred: 8.5,
+        topSpeed: 137,
+        engineLitre: 1.5,
   },
 
   {
     name: "Tesla Model 3",
-    imgSrc: "/img/recommendModel3.jpg",
-    zeroToHundred: 3.1,
-    topSpeed: 162,
-    engineLitre: 0,
+        brand: "Tesla",
+        model: "Model 3",
+        year: 2021,
+        color: "Red",
+        type: "Other",
+        registrationNumber: "DEF456",
+        price:8000,
+        imgSrc: "/img/recommendModel3.jpg",
+        zeroToHundred: 3.1,
+        topSpeed: 162,
+        engineLitre: 0,
   },
   {
     name: "Ford Mustang GT",
-    imgSrc: "/img/recommendMustang.jpg",
-    zeroToHundred: 4.9,
-    topSpeed: 180,
-    engineLitre: 5.0,
+        brand: "Ford",
+        model: "Mustang GT",
+        year: 2019,
+        color: "Blue",
+        type: "Other",
+        registrationNumber: "GHI789",
+        price:22000,
+        imgSrc: "/img/recommendMustang.jpg",
+        zeroToHundred: 4.9,
+        topSpeed: 180,
+        engineLitre: 5.0,
   },
 ];
 
@@ -39,6 +60,7 @@ export const carData = [
         color: "Silver",
         type: "Sedan",
         registrationNumber: "ABC123",
+        price:5000,
         imgSrc: "/img/recommendCivic.jpg",
         zeroToHundred: 8.5,
         topSpeed: 137,
@@ -53,6 +75,7 @@ export const carData = [
         color: "Red",
         type: "Other",
         registrationNumber: "DEF456",
+        price:8000,
         imgSrc: "/img/recommendModel3.jpg",
         zeroToHundred: 3.1,
         topSpeed: 162,
@@ -66,6 +89,7 @@ export const carData = [
         color: "Blue",
         type: "Other",
         registrationNumber: "GHI789",
+        price:22000,
         imgSrc: "/img/recommendMustang.jpg",
         zeroToHundred: 4.9,
         topSpeed: 180,
@@ -79,6 +103,7 @@ export const carData = [
         color: "White",
         type: "Sedan",
         registrationNumber: "JKL012",
+        price:5000,
         imgSrc: "/img/toyota-camry.jpg",
         zeroToHundred: 8.0, // Approximate
         topSpeed: 135,
@@ -92,6 +117,7 @@ export const carData = [
         color: "Silver",
         type: "Sedan",
         registrationNumber: "MNO345",
+        price:5000,
         imgSrc: "/img/honda-accord.jpg",
         zeroToHundred: 7.5, // Approximate
         topSpeed: 130,
@@ -105,6 +131,7 @@ export const carData = [
         color: "Black",
         type: "Sedan",
         registrationNumber: "PQR678",
+        price:5000,
         imgSrc: "/img/nissan-altima.jpg",
         zeroToHundred: 7.8, // Approximate
         topSpeed: 128,
@@ -118,6 +145,7 @@ export const carData = [
         color: "Red",
         type: "Sedan",
         registrationNumber: "STU901",
+        price:11000,
         imgSrc: "/img/hyundai-sonata.jpg",
         zeroToHundred: 8.2, // Approximate
         topSpeed: 130,
@@ -131,6 +159,7 @@ export const carData = [
         color: "Blue",
         type: "Sedan",
         registrationNumber: "VWX234",
+        price:15000,
         imgSrc: "/img/volkswagen-passat.jpg",
         zeroToHundred: 8.5,  // Approximate
         topSpeed: 126,
@@ -151,7 +180,6 @@ const carList = carFetched['data'];
         <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
           {mockCars.map((car) => {
             return (
-
               <RecommendCard
                 key={car.name}
                 name={car.name}

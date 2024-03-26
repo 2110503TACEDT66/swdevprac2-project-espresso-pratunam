@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { DateRange } from '@mui/x-date-pickers-pro/models';
 import dayjs, { Dayjs } from 'dayjs';
-import{ carData} from "../../carlist/page";
+import{ carData } from "../../carlist/page";
 
 const CarDetailPage = ({params}:{params:{name: string}}) => {
     const [value, setValue] = React.useState<DateRange<Dayjs>>([
@@ -90,7 +90,7 @@ const CarDetailPage = ({params}:{params:{name: string}}) => {
 
 
             <div className="flex flex-row mb-3 ">
-              <h1 className="text-2xl mr-1 font-semibold">THB 22000</h1>
+              <h1 className="text-2xl mr-1 font-semibold">THB {car?.price}</h1>
               <h1  className="text-lg " >/ day</h1>
             </div>
 
