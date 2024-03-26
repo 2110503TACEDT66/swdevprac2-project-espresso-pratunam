@@ -6,13 +6,14 @@ import Image from "next/image";
 
 const profilePage = async () => {
   const session = await getServerSession(authOptions);
+  console.log(`Session : ${session?.user?.user.name}`)
   return (
     <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818]">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
           <h1 className="text-white text-5xl mb-5">
-            Hi, {session?.user?.name}!
+            Hi, {session?.user?.user.name}!
           </h1>
           <h1 className="text-white text-xl mb-10">
             This is your expresso pratunam car renting license
@@ -33,11 +34,11 @@ const profilePage = async () => {
 
               <div className="w-[60%] h-full bg-white flex flex-col justify-around">
                 <h1 className="text-xl mb-1">Name:</h1>
-                <h2 className="text-2xl ml-3 mb-3">{session?.user?.name}</h2>
-                <h1 className="text-xl mb-1">Email:</h1>
-                <h2 className="text-2xl ml-3 mb-3">{session?.user?.email}</h2>
+                <h2 className="text-2xl ml-3 mb-3 truncate">{session?.user?.user.name}</h2>
+                <h1 className="text-xl mb-1 ">Email:</h1>
+                <h2 className="text-2xl ml-3 mb-3 truncate">{session?.user?.user.email}</h2>
                 <h1 className="text-xl mb-1">Role:</h1>
-                <h2 className="text-2xl ml-3 mb-3">Janitor</h2>
+                <h2 className="text-2xl ml-3 mb-3">{session?.user?.user.role}</h2>
                 <button className="h-10 text-end">
                   <Link
                     href="/api/auth/signout"
@@ -60,7 +61,7 @@ const profilePage = async () => {
           <Link href="/api/auth/signout"> Logout</Link> */}
         </div>
       ) : (
-        <Link href="/signin">login</Link>
+        <Link href="/api/auth/signin">login</Link>
       )}
     </main>
   );

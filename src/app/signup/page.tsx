@@ -2,11 +2,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import {connectToMongo} from "@/dbconfig/dbconfig";
+import userRegister from "@/libs/userRegister";
 
 export default function SignUpPage() {
-    connectToMongo()
   const router = useRouter();
   const [user, setUser] = React.useState({
     name: "",
@@ -23,9 +21,10 @@ export default function SignUpPage() {
   const onSignUp = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/sign-up", user);
-      console.log(response.data)
-      router.push("/signin");
+      console.log(user)
+      const response = await userRegister(user.name, user.email,user.password,user.phone)
+      console.log(response)
+      router.push("/api/auth/signin");
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
     } finally {

@@ -25,15 +25,15 @@ const Login = (props:Props) => {
         <form onSubmit={onSubmit} className="h-[50%] w-[30%] bg-neutral-950 flex flex-col justify-center px-20 pb-10 shadow-[0_0_200px_20px_rgba(0,0,255,0.15)] rounded-2xl">
             <div className="flex items-center justify-center text-2xl font-semibold mt-10">
                 <h1>Espresso Pratunam</h1>
-                
+
             </div>
             <div className="flex items-center justify-center mb-7 text-lg">
-                 <h3>Log In</h3> 
+                 <h3>Log In</h3>
                  </div>
             <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email:</label>
                 <input
-                    type="email"
+                    type="string"
                     id="email"
                     placeholder="Enter your email..."
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 py-2 px-2 block w-full shadow-sm sm:text-md border-black bg-black rounded-md text-slate-200 mb-3"
