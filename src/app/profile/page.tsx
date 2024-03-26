@@ -60,7 +60,7 @@ const profilePage = async () => {
           <Link href="/api/auth/signout"> Logout</Link> */}
         </div>
       ) : (
-        <Link href="/SignIn">login</Link>
+        <Link href="/signin">login</Link>
       )}
     </main>
   );
