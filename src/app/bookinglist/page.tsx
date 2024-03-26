@@ -57,15 +57,15 @@ const handleClosePopup = () => {
 
 
   return (
-    <main className="relative">
+    <main className="relative bg-slate-100">
       <TopMenuBlack />
-      <div className="w-screen mx-auto my-[20vh]">
+      <div className="w-screen mx-auto my-[20vh] h-screen">
         <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5 text-center">
           Your Car Booking List
         </h1>
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
           {mockBookings.map((booking) => (
-            <div key={booking.id} className="border p-4 rounded-md">
+            <div key={booking.id} className="border p-4 rounded-md bg-white">
               <Image
                 src={booking.imgSrc}
                 alt={booking.carModel}
