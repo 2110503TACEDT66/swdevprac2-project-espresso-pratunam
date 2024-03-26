@@ -8,7 +8,7 @@ const profilePage = async () => {
   const session = await getServerSession(authOptions);
   console.log(`Session : ${session?.user?.user?.name}`)
   return (
-    <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818]">
+    <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
@@ -50,18 +50,17 @@ const profilePage = async () => {
               </div>
             </div>
           </div>
-          {/* <p className="text-stone-800 m-1">
-            <a href="#" className="hover:underline hover:text-slate-400">
-              View your booking
-            </a>
-          </p>
-            <a href="#" className="hover:underline hover:text-slate-400 text-stone-800 m-1">
-              Profile Setting
-            </a>
-          <Link href="/api/auth/signout"> Logout</Link> */}
         </div>
       ) : (
-        <Link href="/api/auth/signin">login</Link>
+        <div className="text-slate-200 h-screen w-screen flex items-center justify-center bg-black">
+           <div className=" h-[50%] w-[30%] bg-neutral-950 flex flex-col items-center justify-center px-20 pb-10 shadow-[0_0_200px_20px_rgba(0,0,255,0.15)] rounded-2xl" >
+          <h1 className="text-white text-3xl mt-7 ">You haven't login yet</h1>
+          <Link href="/api/auth/signin" className=" mt-6 text-white text-lg flex items-center justify-center py-2 px-4 border border-transparent rounded-lg font-medium  shadow-[0_0_11px_1px_rgba(255,255,255,0.15)]  bg-black hover:bg-indigo-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-[50%]  ">login here</Link>
+          <div className="mt-8 text-sm text-white">Haven't got account yet? sign up <Link href="/signup" className="text-blue-500 underline underline-offset-2 ml-1 hover:text-blue-300 hover:underline"> here </Link></div>  
+          </div>
+        </div>
+       
+        
       )}
     </main>
   );
