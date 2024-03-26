@@ -70,7 +70,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
           <div className="w-[80%] h-[30vw] bg-white rounded-2xl abolute z-10 flex justify-center items-center shadow-[0_0_100px_50px_rgba(255,255,255,0.2)]">
             <div className="w-[100%] h-[100%] relative rounded-2xl">
               <Image
-                src={`/img/cars/gt3rs.jpg`}
+                src={car.imgsrc}
                 layout="fill"
                 objectFit="cover"
                 alt="LandingPageImage"
