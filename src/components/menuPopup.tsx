@@ -15,17 +15,17 @@ const Menu = ({ isMenuOpen, onMenuClose }: MenuPopupProps) => {
     >
       <ul className="py-32 px-4 text-white font-normal">
         <li className="flex justify-center relative text-center w-full mb-4 translate-y-0 translate-x-0">
-          <Link href="/menu-item-1" className={`transition-all duration-[1500ms] ${
+          <Link href="/carlist" className={`transition-all duration-[1500ms] ${
                 isMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
-            <span className={`text-9xl text-inherit ml-[200px] inline-block transition-all duration-[400ms] hover:text-[#004bfa] hover:font-semibold`}>
+            <span className={`text-8xl text-inherit ml-[200px] inline-block transition-all duration-[400ms] hover:text-[#004bfa] hover:font-semibold`}>
                 <span className="text-4xl">01</span> Car Rental
             </span>
             </Link>
         </li>
         <li className="flex justify-center relative text-center w-full mb-4 translate-y-0 translate-x-0">
-          <Link href="/menu-item-2 " className={`transition-all duration-[2000ms] ${
+          <Link href="/bookinglist " className={`transition-all duration-[2000ms] ${
                 isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-            <span className={`text-9xl text-inherit ml-[-200px] inline-block duration-[400ms]  hover:text-[#004bfa] hover:font-semibold`}>
+            <span className={`text-8xl text-inherit ml-[-200px] inline-block duration-[400ms]  hover:text-[#004bfa] hover:font-semibold`}>
                 Booking List  <span className="text-4xl">02</span>
             </span>
             </Link>

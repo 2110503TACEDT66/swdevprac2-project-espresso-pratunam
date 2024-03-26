@@ -12,7 +12,7 @@ const TopMenu = () => {
   };
 
   return (
-    <div className={` bg-black w-screen h-20 fixed top-0 z-[1] flex justify-between${
+    <div className={`bg-black w-screen h-20 fixed top-0 z-[1] flex justify-between${
       isMenuOpen ? "" : ""
     }`}>
       <div className="w-[20%] flex items-center text-white font-bold justify-start px-10 transition duration-500 ease-in-out ">
