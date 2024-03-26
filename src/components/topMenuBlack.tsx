@@ -4,7 +4,7 @@ import Link from "next/link";
 import Menu from "./menuPopup";
 import Image from "next/image";
 
-const TopMenu = () => {
+const TopMenuBlack = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -73,4 +73,4 @@ const TopMenu = () => {
   );
 };
 
-export default TopMenu;
+export default TopMenuBlack;

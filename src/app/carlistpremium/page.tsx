@@ -164,7 +164,7 @@ const CarListPage = () => {
         {
             carData.map((car) => {
                 return(
-                   <Link href={`/cardetailpremium/${car.name}`}>
+                   <Link key = {car.name} href={`/cardetailpremium/${car.name}`}>
                      <CarCard key={car.name} name={car.name} brand={car.brand} model={car.model} year={car.year} color={car.color} type={car.type} registrationNumber= {car.registrationNumber} imgSrc={car.imgSrc} zeroToHundred={car.zeroToHundred} topSpeed={car.topSpeed} engineLitre={car.engineLitre}></CarCard>
                   </Link>
                    
