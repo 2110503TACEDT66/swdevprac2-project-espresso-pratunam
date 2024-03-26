@@ -3,10 +3,12 @@ import React,{ useState } from "react";
 import TopMenuBlack from "@/components/topMenuBlack";
 import Image from "next/image";
 import EditFormPopup from "@/components/editpopup";
+import DeletePopup from "@/components/deletepopup";
 
-const CarListPage = () => {
+const BookingListPage = () => {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
 
   const mockBookings = [
@@ -40,10 +42,19 @@ const handleEditBooking = (bookingId:any) => {
   setShowEditPopup(true);
 };
 
-const handleCloseEditPopup = () => {
+const handleDeleteBooking = (bookingId:any) => {
+  const booking = mockBookings.find((booking) => booking.id === bookingId);
+  setSelectedBooking(null);
+  setShowDeletePopup(true);
+};
+
+const handleClosePopup = () => {
   setShowEditPopup(false);
+  setShowDeletePopup(false);
   setSelectedBooking(null);
 };
+
+
 
   return (
     <main className="relative">
@@ -78,7 +89,7 @@ const handleCloseEditPopup = () => {
                 </button>
                 <button
                   className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                //   onClick={() => handleCancelBooking(booking.id)}
+                  onClick={() => handleDeleteBooking(booking.id)}
                 >
                   Delete
                 </button>
@@ -87,9 +98,16 @@ const handleCloseEditPopup = () => {
           ))}
         </div>
       </div>
-      <EditFormPopup isOpen={showEditPopup} onClose={handleCloseEditPopup} bookingData={selectedBooking} />
+      <EditFormPopup isOpen={showEditPopup} onClose={handleClosePopup} bookingData={selectedBooking} />
+      {/* <DeletePopup onDelete={handleClosePopup} onClose={handleClosePopup} booking={selectedBooking} /> */}
+      <DeletePopup
+        isOpen={showDeletePopup}
+        onClose={handleClosePopup}
+        onDelete={handleClosePopup}
+        booking={selectedBooking}
+      />
     </main>
   );
 };
 
-export default CarListPage;
+export default BookingListPage;
