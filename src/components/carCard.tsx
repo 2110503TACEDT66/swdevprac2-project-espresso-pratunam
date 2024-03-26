@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   name: string;
@@ -12,6 +13,7 @@ interface Props {
   zeroToHundred: number;
   topSpeed: number;
   engineLitre: number;
+  carId:string
 }
 
 const CarCard = ({
@@ -20,15 +22,18 @@ const CarCard = ({
   zeroToHundred,
   topSpeed,
   engineLitre,
+  registrationNumber,
+  carId
 }: Props) => {
   return (
+    <Link href={`/cardetail/${carId}`}>
     <div className="w-[100%] h-[35vh] bg-white rounded-lg shadow-md hover:shadow-[0_0_60px_10px_rgba(0,0,0,0.1)]">
       <div className="relative w-full h-[70%] rounded-lg">
         <Image
           src={imgSrc}
           layout="fill"
           objectFit="cover"
-          alt="LandingPageImage"
+          alt={`${imgSrc}`}
           objectPosition="center"
           className="rounded-t-lg"
         />
@@ -57,6 +62,8 @@ const CarCard = ({
         </div>
       </div>
     </div>
+    </Link>
+
   );
 };
 

@@ -1,7 +1,9 @@
 import CarCard from "@/components/carCard";
 import RecommendCard from "@/components/recommendCard";
 import TopMenuBlack from "@/components/topMenuBlack";
+import getAllCars from "@/libs/getAllCars";
 import Link from "next/link";
+import { Car } from "@/interface/getAllCarsInterface";
 
 const mockCars = [
   {
@@ -136,7 +138,12 @@ export const carData = [
       },
 ]
 
-const CarListPage = () => {
+
+const CarListPage = async () => {
+const carFetched = await getAllCars()
+
+const carList = carFetched['data'];
+
   return (
     <main className="relative bg-white pb-5">
       <TopMenuBlack></TopMenuBlack>
@@ -144,7 +151,7 @@ const CarListPage = () => {
         <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
           {mockCars.map((car) => {
             return (
-              
+
               <RecommendCard
                 key={car.name}
                 name={car.name}
@@ -152,22 +159,19 @@ const CarListPage = () => {
                 zeroToHundred={car.zeroToHundred}
                 topSpeed={car.topSpeed}
                 engineLitre={car.engineLitre}
-                
+
               ></RecommendCard>
-          
-              
+
+
             );
           })}
         </div>
         <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5">Available Car</h1>
         <div className="w-full grid grid-cols-4 gap-8 px-20 mb-10">
         {
-            carData.map((car) => {
+            carList.map((car:Car) => {
                 return(
-                   <Link href={`/cardetail/${car.name}`}>
-                     <CarCard key={car.name} name={car.name} brand={car.brand} model={car.model} year={car.year} color={car.color} type={car.type} registrationNumber= {car.registrationNumber} imgSrc={car.imgSrc} zeroToHundred={car.zeroToHundred} topSpeed={car.topSpeed} engineLitre={car.engineLitre}></CarCard>
-                  </Link>
-                   
+                     <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id}></CarCard>
                 )
             })
         }

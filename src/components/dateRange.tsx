@@ -6,9 +6,18 @@ import { DateRange } from '@mui/x-date-pickers-pro/models';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import dayjs, { Dayjs } from 'dayjs';
 
-export default function DateRangePickerComponent({selectedRange, onDateRangeChange}:{selectedRange:DateRange<Dayjs>, onDateRangeChange:any}) {
+export default function DateRangePickerComponent({ onDateRangeChange }:{onDateRangeChange:any}) {
+  const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
+      dayjs(),
+      dayjs().add(1, 'day'),
+  ]);
 
-
+  const handleDateRangeChange = (newValue: DateRange<Dayjs>) => {
+      setSelectedRange(newValue);
+      if (onDateRangeChange) {
+          onDateRangeChange(newValue);
+      }
+  };
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateRangePicker
