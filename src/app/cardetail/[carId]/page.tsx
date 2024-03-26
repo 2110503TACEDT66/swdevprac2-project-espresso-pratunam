@@ -146,6 +146,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
           </div>
           <div className="w-[80%] flex flex-col items-center mt-10">
             <button className="w-[100%] py-6 bg-black text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]"
+            onClick={handleBooking}
             >
               BOOK
             </button>
