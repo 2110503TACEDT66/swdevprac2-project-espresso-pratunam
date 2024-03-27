@@ -40,9 +40,9 @@ export default function SignUpPage() {
   useEffect(() => {
     if (
       user.email.length > 0 &&
-      user.name.length > 2 &&
+      user.name.length > 0 &&
       user.password.length > 6 &&
-      user.phone.length > 10
+      user.phone.length >= 10
     ) {
       setButtonDisabled(false);
     } else {
