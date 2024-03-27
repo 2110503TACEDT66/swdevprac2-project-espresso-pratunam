@@ -21,21 +21,24 @@ export default function SignUpPage() {
   const onSignUp = async () => {
     try {
       setLoading(true);
-      console.log(user)
-      const response = await userRegister(user.name, user.email,user.password,user.phone)
-      console.log(response)
+      console.log(user);
+      const response = await userRegister(
+        user.name,
+        user.email,
+        user.password,
+        user.phone
+      );
+      console.log(response);
+      router.push("/api/auth/signin");
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
-    } finally {
-      setLoading(false);
-      router.push("/api/auth/signin");
-    }
+    } 
   };
 
-  const toSignin = (e:any) => {
-    e.preventDefault()
+  const toSignin = (e: any) => {
+    e.preventDefault();
     router.push("/api/auth/signin");
-};
+  };
 
   useEffect(() => {
     if (
@@ -55,7 +58,10 @@ export default function SignUpPage() {
       <h1 className="mb-6 text-4xl text-white font-bold">
         {loading ? "Processing..." : "Sign Up"}
       </h1>
-      <div className="w-[30vw] h-[30vw] flex flex-col justify-evenly items-center shadow-[0_0_60px_20px_rgba(0,255,255,0.1)] rounded-2xl py-5 bg-neutral-950">
+      <form
+        onSubmit={onSignUp}
+        className="w-[30vw] h-[30vw] flex flex-col justify-evenly items-center shadow-[0_0_60px_20px_rgba(0,255,255,0.1)] rounded-2xl py-5 bg-neutral-950"
+      >
         <input
           type="text"
           id="username"
@@ -98,14 +104,14 @@ export default function SignUpPage() {
           </button>
         ) : (
           <button
-            onClick={onSignUp}
+            type="submit"
             disabled={buttonDisabled}
             className="text-white text-xlflex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-medium hover:bg-indigo-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 "
           >
             Register
           </button>
         )}
-      </div>
+      </form>
     </div>
   );
 }
