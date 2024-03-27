@@ -36,8 +36,8 @@ export default function SignUpPage() {
     if (
       user.email.length > 0 &&
       user.name.length > 0 &&
-      user.password.length > 0 &&
-      user.phone.length > 0
+      user.password.length > 6 &&
+      user.phone.length >= 10 
     ) {
       setButtonDisabled(false);
     } else {
