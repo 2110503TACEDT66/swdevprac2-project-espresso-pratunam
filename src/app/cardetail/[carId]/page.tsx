@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/auth";
 import getBookings from "@/libs/getBookings";
+import { useSession } from "next-auth/react";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
@@ -21,6 +22,8 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   ]);
   const [isLoading, setLoading] = React.useState(true);
   const [car, setCar] = React.useState<Car | null>(null);
+  const { data: session, status } = useSession();
+
 
   const router = useRouter();
 
@@ -82,6 +85,10 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
     };
     fetchData();
   }, []);
+
+  if(!session){
+    router.push("/profile")
+  }
 
   if (isLoading) return <p className="text-white">Loading...</p>;
   if (!car) return <p className="text-white">Cannot find a car...</p>;
