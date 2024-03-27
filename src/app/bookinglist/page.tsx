@@ -83,7 +83,7 @@ const BookingListPage = () => {
     setShowEditPopup(true);
   };
 
-  const handleDeleteBooking = async (bookingId: string) => {
+  const handleDeleteBooking = (bookingId: string) => {
     setSelectedBooking(bookingId);
     setShowDeletePopup(true);
   };

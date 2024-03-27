@@ -21,6 +21,9 @@ export default async function createBooking(
       EndDate: endDate,
     }),
   });
+  if(response.status==404){
+    throw new Error("You've reached maximum booking of 3");
+  }
   if (!response.ok) {
     throw new Error("Failed to add Booking");
   }

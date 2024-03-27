@@ -16,7 +16,6 @@ const EditFormPopup: React.FC<{ isOpen: boolean, onClose: () => void, bookingId:
 
     const handleEdit = async () => {
       const editBookingFetch = await editBooking(bookingId,selectedRange[0]!.toDate(),selectedRange[1]!.toDate());
-
     }
 
   return (
