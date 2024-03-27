@@ -52,9 +52,9 @@ const TopMenuBlack = () => {
         </Link>
       </div>
       <div className="flex items-center w-[20%] justify-center relative">
-        <button className="px-3 py-2.5 text-white font-bold transition duration-500 ease-in-out rounded-lg hover:bg-white hover:bg-opacity-10">
+      <Link href="/premium" className="px-3 py-2.5 text-white font-bold transition duration-500 ease-in-out rounded-lg hover:bg-white hover:bg-opacity-10">
           Premium
-        </button>
+        </Link>
         <Link
           href="/profile"
           className="ml-5 hover:bg-white hover:bg-opacity-10 px-2 py-2 rounded-lg transition duration-500 ease-in-out"

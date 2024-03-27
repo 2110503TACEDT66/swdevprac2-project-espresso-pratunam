@@ -9,6 +9,10 @@ import dayjs, { Dayjs } from "dayjs";
 import getOneCar from "@/libs/getOneCar";
 import { Car } from "@/interface/interface";
 import createBooking from "@/libs/createBooking";
+import { useRouter } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/auth";
+import getBookings from "@/libs/getBookings";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
@@ -18,42 +22,69 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [isLoading, setLoading] = React.useState(true);
   const [car, setCar] = React.useState<Car | null>(null);
 
+  const router = useRouter();
+
   const handleDateRangeChange = (newDateRange: DateRange<Dayjs>) => {
     setSelectedRange(newDateRange);
   };
 
-  const handleBooking = async () =>{
-    try{
+  const handleBooking = async () => {
+    try {
       setLoading(true);
-      const createBookingFetching  = await createBooking(car!._id,car!.ProviderID,selectedRange[0]!.toDate(),selectedRange[1]!.toDate());
-      console.log(createBookingFetching)
-      setLoading(false)
-    }catch (error) {
+      try {
+        const session = await getServerSession(authOptions);
+        console.log(session)
+        if (session?.user?.user.role!='admin') {
+          const userBookings = await getBookings();
+          const userBookingCount = userBookings.length;
+          console.log(userBookingCount)
+          if (userBookingCount >= 3) {
+            // If the user already has 3 bookings, show an alert
+            alert("You can only make a maximum of 3 bookings.");
+            setLoading(false);
+            router.push("/bookinglist");
+            return; // Return early to avoid further execution
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      const createBookingFetching = await createBooking(
+        car!._id,
+        car!.ProviderID,
+        selectedRange[0]!.toDate(),
+        selectedRange[1]!.toDate()
+      );
+      console.log(createBookingFetching);
+
+      setLoading(false);
+      router.push("/bookinglist");
+    } catch (error) {
       console.error("Error create booking", error);
-      setLoading(true); // Handle error case
+      setLoading(false); // Handle error case
+      alert(error);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const carFetch = await getOneCar(params.carId);
-        console.log('carFetch:', carFetch); // Inspect the value
-        const carObj = carFetch['data']
+        console.log("carFetch:", carFetch);
+        const carObj = carFetch["data"];
         setCar(carObj);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setLoading(true); // Handle error case
+        setLoading(true);
       }
     };
     fetchData();
-  },[]);
-
+  }, []);
 
   if (isLoading) return <p className="text-white">Loading...</p>;
-  if(!car) return <p className="text-white">Cannot find a car...</p>;
+  if (!car) return <p className="text-white">Cannot find a car...</p>;
 
   return (
     <main className="relative overflow-hidden">
@@ -132,7 +163,9 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
             </div>
 
             <div className="flex flex-row mb-3 ">
-              <h1 className="text-2xl mr-1 font-semibold">THB {car.priceperday}</h1>
+              <h1 className="text-2xl mr-1 font-semibold">
+                THB {car.priceperday}
+              </h1>
               <h1 className="text-lg ">/ day</h1>
             </div>
           </div>
@@ -145,7 +178,9 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
             ></DateRangePickerComponent>
           </div>
           <div className="w-[80%] flex flex-col items-center mt-10">
-            <button className="w-[100%] py-6 bg-yellow-500 text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]"
+            <button
+              className="w-[100%] py-6 bg-yellow-500 text-white text-4xl mb-5 rounded-2xl hover:shadow-[0_0_20px_2px_rgba(0,0,0,0.2)]"
+              onClick={handleBooking}
             >
               BOOK
             </button>
