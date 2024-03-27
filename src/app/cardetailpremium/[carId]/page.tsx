@@ -40,7 +40,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
           console.log(userBookingCount)
           if (userBookingCount >= 3) {
             // If the user already has 3 bookings, show an alert
-            alert("You can only make a maximum of 3 bookings.");
+            alert("You've reached maximum booking of 3");
             setLoading(false);
             router.push("/bookinglist");
             return; // Return early to avoid further execution
