@@ -11,6 +11,7 @@ import DeletePopup from "@/components/deletepopup";
 import { Booking, Car } from "@/interface/interface";
 import getAllCars from "@/libs/getAllCars";
 import getBookings from "@/libs/getBookings";
+import { getSession, useSession } from "next-auth/react";
 
 const Adminview = () => {
   const [showEditPopup, setShowEditPopup] = useState(false);
@@ -21,6 +22,7 @@ const Adminview = () => {
   const [bookings, setBookings] = useState(null);
 
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   const mockBookings = [
     {
@@ -42,7 +44,6 @@ const Adminview = () => {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const session = await getServerSession(authOptions);
         console.log(session);
         console.log(`Hey : ${session?.user?.user.role}`)
         if (session?.user?.user.role !== 'admin') {
@@ -50,6 +51,7 @@ const Adminview = () => {
         }
       } catch (error) {
         console.error("Error fetching session:", error);
+
       }
     };
     const fetchBookings = async () => {
@@ -101,6 +103,10 @@ const Adminview = () => {
   };
 
 
+
+  if(session?.user?.user.role != 'admin'){
+    router.push("/")
+  }
 
   if (!cars) {
     return <p className="text-white">Cannot Fetch Cars</p>;
