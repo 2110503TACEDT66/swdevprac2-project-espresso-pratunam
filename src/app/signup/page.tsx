@@ -24,11 +24,11 @@ export default function SignUpPage() {
       console.log(user)
       const response = await userRegister(user.name, user.email,user.password,user.phone)
       console.log(response)
-      router.push("/api/auth/signin");
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
     } finally {
       setLoading(false);
+      router.push("/api/auth/signin");
     }
   };
 
