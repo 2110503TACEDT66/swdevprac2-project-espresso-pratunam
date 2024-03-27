@@ -169,42 +169,42 @@ const mockCars = [
 
 
 const CarListPage = async () => {
-const carFetched = await getAllCars()
+  const carFetched = await getAllCars()
 
-const carList = carFetched['data'];
+  const carList = carFetched['data'];
 
-  return (
-    <main className="relative bg-white pb-5">
-      <TopMenuBlack></TopMenuBlack>
-      <div className=" w-screen mx-auto my-20">
-        <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
-          {mockCars.map((car) => {
-            return (
-              <RecommendCard
-                key={car.name}
-                name={car.name}
-                imgSrc={car.imgSrc}
-                zeroToHundred={car.zeroToHundred}
-                topSpeed={car.topSpeed}
-                engineLitre={car.engineLitre}
+    return (
+      <main className="relative bg-white pb-5">
+        <TopMenuBlack></TopMenuBlack>
+        <div className=" w-screen mx-auto my-20">
+          <div className="w-full h-[60vh] grid grid-flow-col grid-col-3 gap-0">
+            {mockCars.map((car) => {
+              return (
+                <RecommendCard
+                  key={car.name}
+                  name={car.name}
+                  imgSrc={car.imgSrc}
+                  zeroToHundred={car.zeroToHundred}
+                  topSpeed={car.topSpeed}
+                  engineLitre={car.engineLitre}
 
-              ></RecommendCard>
+                ></RecommendCard>
 
 
-            );
-          })}
+              );
+            })}
+          </div>
+          <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5">Available Car</h1>
+          <div className="w-full grid grid-cols-4 gap-8 px-20 mb-10">
+          {
+              carList.map((car:Car) => {
+                  return(
+                      <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id} price={car.priceperday}></CarCard>
+                  )
+              })
+          }
+          </div>
         </div>
-        <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5">Available Car</h1>
-        <div className="w-full grid grid-cols-4 gap-8 px-20 mb-10">
-        {
-            carList.map((car:Car) => {
-                return(
-                     <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id} price={car.priceperday}></CarCard>
-                )
-            })
-        }
-        </div>
-      </div>
     </main>
   );
 };
