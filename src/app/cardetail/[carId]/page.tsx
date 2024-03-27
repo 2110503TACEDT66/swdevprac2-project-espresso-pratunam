@@ -10,6 +10,9 @@ import getOneCar from "@/libs/getOneCar";
 import { Car } from "@/interface/interface";
 import createBooking from "@/libs/createBooking";
 import { useRouter } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/auth";
+import getBookings from "@/libs/getBookings";
 
 const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [selectedRange, setSelectedRange] = React.useState<DateRange<Dayjs>>([
@@ -30,11 +33,26 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
       setLoading(true);
       const createBookingFetching  = await createBooking(car!._id,car!.ProviderID,selectedRange[0]!.toDate(),selectedRange[1]!.toDate());
       console.log(createBookingFetching)
-      setLoading(false)
-      router.push("/bookinglist")
+      const session = await getServerSession(authOptions);
+      if (session?.user) {
+        const userBookings = await getBookings();
+        const userBookingCount = userBookings.filter(
+          (booking:any) => booking.UserID === session?.user?.user._id
+        ).length;
+        if (userBookingCount >= 3) {
+          // If the user already has 3 bookings, show an alert
+          alert("You can only make a maximum of 3 bookings.");
+          setLoading(false);
+          router.push("/bookinglist");
+          return; // Return early to avoid further execution
+        }
+      }
+      setLoading(false);
+      router.push("/bookinglist");
     }catch (error) {
       console.error("Error create booking", error);
-      setLoading(true); // Handle error case
+      setLoading(false); // Handle error case
+      alert("setloading false")
     }
   }
 
