@@ -21,7 +21,7 @@ export default function SignUpPage() {
   const onSignUp = async () => {
     try {
       setLoading(true);
-      console.log(user);
+      // console.log(user);
       const response = await userRegister(
         user.name,
         user.email,
