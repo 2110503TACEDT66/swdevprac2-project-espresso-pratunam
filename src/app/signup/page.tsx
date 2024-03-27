@@ -32,12 +32,17 @@ export default function SignUpPage() {
     }
   };
 
+  const toSignin = (e:any) => {
+    e.preventDefault()
+    router.push("/api/auth/signin");
+};
+
   useEffect(() => {
     if (
       user.email.length > 0 &&
-      user.name.length > 0 &&
-      user.password.length > 0 &&
-      user.phone.length > 0
+      user.name.length > 2 &&
+      user.password.length > 6 &&
+      user.phone.length > 10
     ) {
       setButtonDisabled(false);
     } else {
@@ -50,7 +55,7 @@ export default function SignUpPage() {
       <h1 className="mb-6 text-4xl text-white font-bold">
         {loading ? "Processing..." : "Sign Up"}
       </h1>
-      <form className="w-[30vw] h-[30vw] flex flex-col justify-evenly items-center shadow-[0_0_60px_20px_rgba(0,255,255,0.1)] rounded-2xl py-5 bg-neutral-950">
+      <div className="w-[30vw] h-[30vw] flex flex-col justify-evenly items-center shadow-[0_0_60px_20px_rgba(0,255,255,0.1)] rounded-2xl py-5 bg-neutral-950">
         <input
           type="text"
           id="username"
@@ -100,7 +105,7 @@ export default function SignUpPage() {
             Register
           </button>
         )}
-      </form>
+      </div>
     </div>
   );
 }
