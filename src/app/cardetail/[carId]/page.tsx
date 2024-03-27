@@ -50,7 +50,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
           }
         }
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
       const createBookingFetching = await createBooking(
         car!._id,

@@ -50,7 +50,7 @@ const Adminview = () => {
           router.push("/");
         }
       } catch (error) {
-        console.error("Error fetching session:", error);
+        //console.error("Error fetching session:", error);
 
       }
     };

@@ -59,7 +59,7 @@ const BookingListPage = () => {
         setCars(cars);
         setIsLoading(false);
       } catch (error) {
-        console.log(`Error from getBookings: ${error}`);
+        //console.log(`Error from getBookings: ${error}`);
       }
     };
 
