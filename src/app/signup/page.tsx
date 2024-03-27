@@ -28,16 +28,15 @@ export default function SignUpPage() {
         user.password,
         user.phone
       );
-      console.log(response);
-      router.push("/api/auth/signin");
+      alert('Sign Up succesfully');
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
-    } 
+    }
   };
 
   const toSignin = (e: any) => {
     e.preventDefault();
-    router.push("/api/auth/signin");
+    router.push("/profile");
   };
 
   useEffect(() => {
