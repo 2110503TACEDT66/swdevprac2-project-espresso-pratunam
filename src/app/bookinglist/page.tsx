@@ -8,6 +8,7 @@ import getBookings from "@/libs/getBookings";
 import { Booking, Car } from "@/interface/interface";
 import getAllCars from "@/libs/getAllCars";
 import deleteBooking from "@/libs/deleteBooking";
+import {useRouter} from "next/navigation";
 
 const BookingListPage = () => {
   const [showEditPopup, setShowEditPopup] = useState(false);
@@ -16,7 +17,7 @@ const BookingListPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [bookings, setBookings] = useState(null);
   const [cars, setCars] = useState<Car[]>();
-
+  const router = useRouter();
   const mockBookings = [
     {
       id: 1,
@@ -92,6 +93,7 @@ const BookingListPage = () => {
     setShowEditPopup(false);
     setShowDeletePopup(false);
     setSelectedBooking("");
+    window.location.reload();
   };
 
   return (
