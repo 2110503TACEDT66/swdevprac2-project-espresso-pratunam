@@ -36,11 +36,11 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
       setLoading(true);
       try {
         const session = await getServerSession(authOptions);
-        console.log(session)
+        //console.log(session)
         if (session?.user?.user.role!='admin') {
           const userBookings = await getBookings();
           const userBookingCount = userBookings.length;
-          console.log(userBookingCount)
+          //console.log(userBookingCount)
           if (userBookingCount >= 3) {
             // If the user already has 3 bookings, show an alert
             alert("You've reached maximum booking of 3");
@@ -58,7 +58,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
         selectedRange[0]!.toDate(),
         selectedRange[1]!.toDate()
       );
-      console.log(createBookingFetching);
+      //console.log(createBookingFetching);
 
       setLoading(false);
       router.push("/bookinglist");
@@ -74,7 +74,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
       try {
         setLoading(true);
         const carFetch = await getOneCar(params.carId);
-        console.log("carFetch:", carFetch);
+        //console.log("carFetch:", carFetch);
         const carObj = carFetch["data"];
         setCar(carObj);
         setLoading(false);

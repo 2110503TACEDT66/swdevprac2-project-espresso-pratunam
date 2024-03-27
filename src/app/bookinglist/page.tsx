@@ -40,22 +40,22 @@ const BookingListPage = () => {
       try {
         setIsLoading(true);
         const bookingFetch = await getBookings();
-        // console.log(bookingFetch);
+        // //console.log(bookingFetch);
         const bookings = bookingFetch["data"];
-        console.log(bookings);
+        //console.log(bookings);
         setBookings(bookings);
         setIsLoading(false);
       } catch (error) {
-        console.log(`Error from getBookings: ${error}`);
+        //console.log(`Error from getBookings: ${error}`);
       }
     };
     const fetchCars = async () => {
       try {
         setIsLoading(true);
         const carsFetch = await getAllCars();
-        // console.log(carsFetch);
+        // //console.log(carsFetch);
         const cars = carsFetch["data"];
-        console.log(cars);
+        //console.log(cars);
         setCars(cars);
         setIsLoading(false);
       } catch (error) {
