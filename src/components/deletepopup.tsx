@@ -1,5 +1,7 @@
+"use client";
 import { Booking } from "@/interface/interface";
 import deleteBooking from "@/libs/deleteBooking";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const DeletePopup: React.FC<{
@@ -7,8 +9,10 @@ const DeletePopup: React.FC<{
   bookingId: string;
   onClose: () => void;
 }> = ({ isOpen, bookingId, onClose }) => {
+  const router = useRouter();
   const handleDelete = async () => {
     await deleteBooking(bookingId);
+    router.refresh()
     onClose();
   };
 
