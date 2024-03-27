@@ -136,7 +136,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
             </div>
 
             <div className="flex flex-row mb-3 ">
-              <h1 className="text-2xl mr-1 font-semibold">THB 22000</h1>
+              <h1 className="text-2xl mr-1 font-semibold">THB {car.priceperday}</h1>
               <h1 className="text-lg ">/ day</h1>
             </div>
           </div>

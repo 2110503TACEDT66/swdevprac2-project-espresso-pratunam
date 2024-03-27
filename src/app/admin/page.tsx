@@ -43,8 +43,9 @@ const Adminview = () => {
     const fetchSession = async () => {
       try {
         const session = await getServerSession(authOptions);
+        console.log(session);
         console.log(`Hey : ${session?.user?.user.role}`)
-        if (session?.user?.user.role !== "admin") {
+        if (session?.user?.user.role !== 'admin') {
           router.push("/");
         }
       } catch (error) {
@@ -78,10 +79,9 @@ const Adminview = () => {
       }
     };
 
-
-    fetchCars();
     fetchSession();
     fetchBookings();
+    fetchCars();
   }, []);
 
   const handleEditBooking = (bookingId: any) => {
@@ -121,6 +121,7 @@ const Adminview = () => {
         <h1 className="text-white text-4xl font-semibold px-10 mt-5 mb-5 text-center">
           All Car Booking List
         </h1>
+
         <div className="grid grid-cols-3 gap-8 px-20 mb-10">
           {(bookings as unknown as Booking[]).map((booking: Booking) => (
             <div
