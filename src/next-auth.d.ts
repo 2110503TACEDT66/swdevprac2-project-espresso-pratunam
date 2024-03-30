@@ -15,7 +15,7 @@ export interface UserType {
 
 interface SessionInfer extends UserType {
   success: boolean,
-  tokeen: string
+  token: string
 }
 import NextAuth from 'next-auth'
 

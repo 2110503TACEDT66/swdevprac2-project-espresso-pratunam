@@ -37,7 +37,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
       try {
         const session = await getServerSession(authOptions);
         console.log(session)
-        if (session?.user?.user.role!='admin') {
+        if (session?.user.role !='admin') {
           const userBookings = await getBookings();
           const userBookingCount = userBookings.length;
           console.log(userBookingCount)

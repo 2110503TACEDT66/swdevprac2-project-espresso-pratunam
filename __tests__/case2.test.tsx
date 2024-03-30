@@ -38,11 +38,11 @@ describe('Car Booking', () => {
 
   it('should create edit and delete a booking successfully', async () => {
    
-    // const startDateInput = screen.getByLabelText('Start'); // Update label text here
-    // userEvent.type(startDateInput, '03/30/2024');
+    const startDateInput = screen.getByLabelText('Start'); // Update label text here
+    userEvent.type(startDateInput, '03/30/2024');
   
-    // const endDateInput = screen.getByLabelText('End'); // Ensure you have a label with this text
-    // userEvent.type(endDateInput, '03/31/2024');
+    const endDateInput = screen.getByLabelText('End'); // Ensure you have a label with this text
+    userEvent.type(endDateInput, '03/31/2024');
   
     const confirmBookingButton = screen.getByRole('button', { name: 'BOOK' , hidden: true })
     userEvent.click(confirmBookingButton);
