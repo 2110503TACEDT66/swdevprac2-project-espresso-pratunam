@@ -32,6 +32,10 @@ describe("Sign-Up and Sign-In", () => {
     await waitFor(() => {
       expect(screen.getByText("Processing...")).toBeInTheDocument();
     });
+    // adding new
+    await waitFor(() => {
+      expect(screen.getByText("User registered successfully")).toBeInTheDocument();
+    });
     waitFor(() => {
       expect(screen.getByText("Sign Up successfully")).toBeInTheDocument();
     });

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import userRegister from "@/libs/userRegister";
 
@@ -15,33 +14,27 @@ export default function SignUpPage() {
     createAt: new Date().toISOString(),
   });
 
-  const [loading, setLoading] = React.useState(false);
-
-  const onSignUp = async () => {
+  const onSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      setLoading(true);
       const response = await userRegister(
         user.name,
         user.email,
         user.password,
         user.phone
       );
-      console.log("Sign Up succesfully");
-    } catch (error: any) {
-      console.log("Failed to sign up the user", error.message);
-    }
-  };
 
-  const toSignin = (e: any) => {
-    e.preventDefault();
-    router.push("/profile");
+      alert("User registered successfully," + response.message);
+      // case of success push to profile
+      router.push("/profile");
+    } catch (error: any) {
+      alert("Failed to sign up the user" + error.message);
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-screen bg-black">
-      <h1 className="mb-6 text-4xl text-white font-bold">
-        {loading ? "Processing..." : "Sign Up"}
-      </h1>
+      <h1 className="mb-6 text-4xl text-white font-bold mt-16">Signing Up</h1>
       <form
         onSubmit={onSignUp}
         className="w-[30vw] h-[30vw] flex flex-col justify-evenly items-center shadow-[0_0_60px_20px_rgba(0,255,255,0.1)] rounded-2xl py-5 bg-neutral-950"

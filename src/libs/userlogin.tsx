@@ -1,17 +1,23 @@
-export default async function userLogIn(userEmail:string,userPassword:string) {
-    const response = await fetch("https://espresso-pratunam-rental-car.vercel.app/authentication/login",{
-        method: "POST",
-        headers:{
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            email: userEmail,
-            password: userPassword,
-        }),
-    })
-    if(!response.ok){
-        throw new Error("Failed to Login")
+export default async function userLogIn(
+  userEmail: string,
+  userPassword: string
+) {
+  const response = await fetch(
+    "https://espresso-pratunam-rental-car.vercel.app/authentication/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: userEmail,
+        password: userPassword,
+      }),
     }
+  );
+  if (!response.ok) {
+    throw new Error("Failed to Login\n" + response.statusText);
+  }
 
-    return await response.json()
+  return await response.json();
 }

@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const nextAuthSession = await getServerSession(authOptions);
   return (
     <html lang="en" className="overflow-x-hidden no-scrollbar">
