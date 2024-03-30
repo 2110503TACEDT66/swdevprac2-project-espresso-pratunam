@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 
 // Define Interfaces
-interface UserType {
+export interface UserType {
   _id: string;
   name: string;
   email: string;
@@ -12,15 +12,15 @@ interface UserType {
   __v: number;
 }
 
+
+interface SessionInfer extends UserType {
+  success: boolean,
+  tokeen: string
+}
 import NextAuth from 'next-auth'
 
 declare module "next-auth" {
     interface Session {
-      user?: {
-        name: ReactNode;
-        success: boolean;
-        user: UserType;
-        token: string;
-      }
+      user: SessionInfer
     }
 }
