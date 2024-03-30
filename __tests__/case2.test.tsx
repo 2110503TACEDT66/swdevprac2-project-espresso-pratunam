@@ -8,7 +8,6 @@ import editBooking from '@/libs/editBooking';
 import deleteBooking from '@/libs/deleteBooking';
 import { useRouter } from 'next/navigation';
 
-
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn().mockReturnValue({
     push: jest.fn()
@@ -46,7 +45,7 @@ describe('Car Booking', () => {
   
     const confirmBookingButton = screen.getByRole('button', { name: 'BOOK' , hidden: true })
     userEvent.click(confirmBookingButton);
-  
+    
    
     await waitFor(() => expect(createBooking).toHaveBeenCalledWith('mockCarId', expect.any(Date), expect.any(Date)));
   

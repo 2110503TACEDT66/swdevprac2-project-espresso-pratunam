@@ -9,7 +9,7 @@ export default async function editBooking(bookingId:string,startDate:Date,endDat
         method: "PUT",
         headers:{
             "Content-Type": "application/json",
-            authorization: `Bearer ${session?.user?.token}`
+            authorization: `Bearer ${session?.user.token}`
         },
         body: JSON.stringify({
             StartDate: startDate,
