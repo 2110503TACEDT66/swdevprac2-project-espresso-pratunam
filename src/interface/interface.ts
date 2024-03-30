@@ -41,3 +41,8 @@ export interface Booking {
     createdAt: string | Date;
     id: string;
   }
+
+  export interface MenuPopupProps {
+    isMenuOpen: boolean,
+    onMenuClose: () => void
+  }

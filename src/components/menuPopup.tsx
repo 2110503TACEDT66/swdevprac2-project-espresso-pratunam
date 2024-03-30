@@ -1,12 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { MenuPopupProps } from "@/interface/interface";
 
-interface MenuPopupProps {
-  isMenuOpen: boolean;
-  onMenuClose: () => void;
-}
 
-const Menu = ({ isMenuOpen, onMenuClose }: MenuPopupProps) => {
+
+const Menu = ({ isMenuOpen, onMenuClose } : MenuPopupProps) => {
   return (
     <div
       className={`absolute w-screen h-screen top-full right-0  bg-opacity-100 backdrop-blur-[16px] shadow-md rounded-lg transition-transform  duration-1000 ${
