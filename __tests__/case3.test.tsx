@@ -12,5 +12,4 @@ describe('CarListPage', () => {
     expect(availableCarHeading).toBeInTheDocument();
   });
 
-  // Add more test cases as needed
 });
