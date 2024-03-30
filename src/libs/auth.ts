@@ -33,8 +33,13 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
-      session.user = token as any;
+    async session({ session, token }) {
+      // console.log("----- session ------")
+      // console.log(session)
+      // console.log("----- token ------")
+      console.log("token = ",token)
+      session = token as any;
+      console.log("Session = ",session)
       return session;
     },
   },

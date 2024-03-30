@@ -1,19 +1,23 @@
-import { getServerSession } from "next-auth";
+'use client'
 import { authOptions } from "@/libs/auth";
 import Link from "next/link";
 import TopMenu from "@/components/topmenu";
 import Image from "next/image";
+import { NextResponse } from "next/server";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
-const profilePage = async () => {
-  const session = await getServerSession(authOptions);
-  console.log(`Session : ${session?.user?.user.name}`)
+const profilePage = () => {
+  const { data: session, status } = useSession();
+  if(session && session.user){
+    console.log(`Session : ${session.user}`);
   return (
     <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
           <h1 className="text-white text-5xl mb-5">
-            Hi, {session?.user?.user?.name}!
+            Hi  {session.user.name}
           </h1>
           <h1 className="text-white text-xl mb-10">
             This is your expresso pratunam car renting license
@@ -64,6 +68,8 @@ const profilePage = async () => {
       )}
     </main>
   );
+  }
+  
 };
 
 export default profilePage;

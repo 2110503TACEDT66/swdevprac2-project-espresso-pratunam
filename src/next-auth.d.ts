@@ -17,6 +17,7 @@ import NextAuth from 'next-auth'
 declare module "next-auth" {
     interface Session {
       user?: {
+        name: ReactNode;
         success: boolean;
         user: UserType;
         token: string;
