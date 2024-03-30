@@ -16,7 +16,8 @@ const Login = (props: Props) => {
     const signTheFUckIn = signIn("credentials", {
       email: email,
       password: password,
-      redirect: false,
+      callbackUrl: '/profile',
+      redirect: true
     });
   };
 
