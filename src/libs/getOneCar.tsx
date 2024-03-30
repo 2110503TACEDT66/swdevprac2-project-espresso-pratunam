@@ -4,7 +4,7 @@ import { authOptions } from "./auth";
 
 export default async function getOneCar(cardId:string) {
     const session = await getServerSession(authOptions);
-    const response = await fetch(`http://localhost:8000/cars/${cardId}`,{
+    const response = await fetch(`https://espresso-pratunam-rental-car.vercel.app/cars/${cardId}`,{
         method: "GET",
         headers:{
             "Content-Type": "application/json",
