@@ -21,14 +21,13 @@ export default function SignUpPage() {
   const onSignUp = async () => {
     try {
       setLoading(true);
-      console.log(user);
       const response = await userRegister(
         user.name,
         user.email,
         user.password,
         user.phone
       );
-      alert('Sign Up succesfully');
+      console.log('Sign Up succesfully');
     } catch (error: any) {
       console.log("Failed to sign up the user", error.message);
     }

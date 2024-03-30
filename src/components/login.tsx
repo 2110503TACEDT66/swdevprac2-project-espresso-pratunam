@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 type Props = {
     className? : string
     callbackURL? : string
+    signIn: (credentials: string, options: { email: string, password: string, redirect: boolean }) => Promise<void>;
 }
 
 const Login = (props:Props) => {
@@ -12,11 +13,10 @@ const Login = (props:Props) => {
   const password = useRef("");
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
-    await signIn("credentials",{
+    await props.signIn("credentials",{
         email: email.current,
         password: password.current,
         redirect: true,
-        callbackUrl: props.callbackURL ?? "http://localhost:3000"
     })
   }
 
@@ -35,7 +35,7 @@ const Login = (props:Props) => {
                 <input
                     type="string"
                     id="email"
-                    placeholder="Enter your email..."
+                    placeholder="Enter your email"
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 py-2 px-2 block w-full shadow-sm sm:text-md border-black bg-black rounded-md text-slate-200 mb-3"
                     onChange={(e) => (email.current = e.target.value)}
                 />
@@ -45,7 +45,7 @@ const Login = (props:Props) => {
                 <input
                     type="password"
                     id="password"
-                    placeholder="Enter your password..."
+                    placeholder="Enter your password"
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 py-2 px-2 block w-full shadow-sm sm:text-md border-black bg-black rounded-md text-slate-200"
                     onChange={(e) => (password.current = e.target.value)}
                 />
