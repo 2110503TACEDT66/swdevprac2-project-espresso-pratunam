@@ -1,5 +1,5 @@
 "use client";
-import { SignInResponse, signIn, useSession } from "next-auth/react";
+import { SignInResponse, signIn, signOut, useSession } from "next-auth/react";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -27,8 +27,18 @@ const Login = (props: Props) => {
   return (
     <div className="text-slate-200 h-screen w-screen flex items-center justify-center bg-black">
       {session.data?.user ? (
-        <div>
-          <h1>You Logged IN Bro</h1>
+        <div className="text-center">
+            <h1 className="mb-6 text-2xl">
+                You Already Logged In Bro
+            </h1>
+          <button
+            className="inline-block px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+            onClick={() => {
+                signOut()
+            }}
+          >
+            Logout
+          </button>
         </div>
       ) : (
         <form
