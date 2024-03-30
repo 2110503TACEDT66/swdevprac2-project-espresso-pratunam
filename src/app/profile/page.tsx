@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
-const profilePage = () => {
+const ProfilePage = () => {
   const session = useSession();
   if(session && session.data?.user){
     console.log(`Session : ${session.data.user}`);
@@ -72,4 +72,4 @@ const profilePage = () => {
   
 };
 
-export default profilePage;
+export default ProfilePage;

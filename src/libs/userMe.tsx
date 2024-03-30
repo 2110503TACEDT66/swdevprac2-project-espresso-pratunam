@@ -1,5 +1,5 @@
 export default async function userMe() {
-    const response = await fetch("http://localhost:8000/authentication/me",{
+    const response = await fetch("https://espresso-pratunam-rental-car.vercel.app/authentication/me",{
         method: "GET",
         headers:{
             "Content-Type": "application/json",
