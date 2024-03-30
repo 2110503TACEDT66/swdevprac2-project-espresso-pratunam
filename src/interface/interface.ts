@@ -43,6 +43,6 @@ export interface Booking {
   }
 
   export interface MenuPopupProps {
-    isMenuOpen: boolean,
-    onMenuClose: () => void
+    isMenuOpen: boolean;
+    onMenuClose: () => void;
   }
