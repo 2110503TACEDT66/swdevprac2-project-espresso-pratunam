@@ -8,7 +8,7 @@ export default async function getBookings() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${session?.user?.token}`,
+      authorization: `Bearer ${session?.user.token}`,
     },
   });
   if (!response.ok) {

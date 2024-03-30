@@ -14,6 +14,7 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+        console.log("Perform login", credentials)
         if (!credentials) return null;
         const user = await userLogIn(credentials.email, credentials.password);
         console.log(user)
@@ -26,16 +27,28 @@ export const authOptions: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/SignIn",
+    // signIn: "/SignIn",
   },
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
-      session.user = token as any;
-      return session;
+    async session({ session, token }) {
+      console.log("----- session ------")
+      console.log(session)
+      console.log("----- token ------")
+      console.log(token)
+      const user = token.user as UserType
+      session.user._id = user._id as any;
+      session.user.name = user.name as any;
+      session.user.email = user.email as any;
+      session.user.phone = user.phone as any;
+      session.user.role = user.role as any;
+      session.user.createdAt = user.createdAt;
+      console.log("----- modified session ------")
+      console.log(session)
+      return session
     },
   },
 };

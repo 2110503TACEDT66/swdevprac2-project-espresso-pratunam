@@ -8,7 +8,6 @@ import editBooking from '@/libs/editBooking';
 import deleteBooking from '@/libs/deleteBooking';
 import { useRouter } from 'next/navigation';
 
-
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn().mockReturnValue({
     push: jest.fn()
@@ -17,7 +16,7 @@ jest.mock('next/navigation', () => ({
 
 jest.mock('next-auth/react', () => ({
   ...jest.requireActual('next-auth/react'),
-  useSession: jest.fn() // Mock useSession hook
+  useSession: jest.fn()
 }));
 
 describe('Car Booking', () => {
@@ -36,7 +35,7 @@ describe('Car Booking', () => {
     );
   });
 
-  it('should create a booking successfully', async () => {
+  it('should create edit and delete a booking successfully', async () => {
    
     const startDateInput = screen.getByLabelText('Start'); // Update label text here
     userEvent.type(startDateInput, '03/30/2024');
@@ -44,10 +43,9 @@ describe('Car Booking', () => {
     const endDateInput = screen.getByLabelText('End'); // Ensure you have a label with this text
     userEvent.type(endDateInput, '03/31/2024');
   
-   
-    const confirmBookingButton = screen.getByText('Confirm Booking');
+    const confirmBookingButton = screen.getByRole('button', { name: 'BOOK' , hidden: true })
     userEvent.click(confirmBookingButton);
-  
+    
    
     await waitFor(() => expect(createBooking).toHaveBeenCalledWith('mockCarId', expect.any(Date), expect.any(Date)));
   

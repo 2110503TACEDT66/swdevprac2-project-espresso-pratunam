@@ -10,7 +10,7 @@ export default async function userLogIn(userEmail:string,userPassword:string) {
         }),
     })
     if(!response.ok){
-        throw new Error("Failed to fetch hospitals")
+        throw new Error("Failed to Login")
     }
 
     return await response.json()
