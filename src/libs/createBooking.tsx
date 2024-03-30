@@ -13,7 +13,7 @@ export default async function createBooking(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${session?.user?.token}`,
+      "authorization": `Bearer ${session?.user?.token}`,
     },
     body: JSON.stringify({
       ProviderID: providerId,
@@ -21,6 +21,7 @@ export default async function createBooking(
       EndDate: endDate,
     }),
   });
+
   if(response.status==404){
     throw new Error("You've reached maximum booking of 3");
   }
