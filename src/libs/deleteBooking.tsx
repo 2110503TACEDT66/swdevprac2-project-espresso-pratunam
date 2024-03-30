@@ -5,7 +5,7 @@ import { authOptions } from "./auth";
 
 export default async function deleteBooking(bookingId:string) {
     const session = await getServerSession(authOptions);
-    const response = await fetch(`https://espresso-pratunam-rental-car.vercel.app/bookings/${bookingId}`,{
+    const response = await fetch(`http://localhost:8000/bookings/${bookingId}`,{
         method: "DELETE",
         headers:{
             "Content-Type": "application/json",

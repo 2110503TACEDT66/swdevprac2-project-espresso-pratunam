@@ -4,7 +4,7 @@ import { authOptions } from "./auth";
 
 export default async function getBookings() {
   const session = await getServerSession(authOptions);
-  const response = await fetch("https://espresso-pratunam-rental-car.vercel.app/bookings", {
+  const response = await fetch("http://localhost:8000/bookings", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
