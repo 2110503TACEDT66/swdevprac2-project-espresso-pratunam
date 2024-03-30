@@ -8,16 +8,16 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 const profilePage = () => {
-  const { data: session, status } = useSession();
-  if(session && session.user){
-    console.log(`Session : ${session.user}`);
+  const session = useSession();
+  if(session && session.data?.user){
+    console.log(`Session : ${session.data.user}`);
   return (
     <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
       <TopMenu></TopMenu>
       {session ? (
         <div className="h-[80%] w-screen flex flex-col items-center justify-center">
           <h1 className="text-white text-5xl mb-5">
-            Hi  {session.user.name}
+            Hi  {session.data.user.name}
           </h1>
           <h1 className="text-white text-xl mb-10">
             This is your expresso pratunam car renting license
@@ -38,11 +38,11 @@ const profilePage = () => {
 
               <div className="w-[60%] h-full bg-white flex flex-col justify-around">
                 <h1 className="text-xl mb-1">Name:</h1>
-                <h2 className="text-xl ml-3 mb-3 truncate">{session?.user?.user?.name}</h2>
+                <h2 className="text-xl ml-3 mb-3 truncate">{session?.data.user?.name}</h2>
                 <h1 className="text-xl mb-1 ">Email:</h1>
-                <h2 className="text-xl ml-3 mb-3 truncate">{session?.user?.user?.email}</h2>
+                <h2 className="text-xl ml-3 mb-3 truncate">{session?.data.user?.email}</h2>
                 <h1 className="text-xl mb-1">Role:</h1>
-                <h2 className="text-xl ml-3 mb-3">{session?.user?.user?.role}</h2>
+                <h2 className="text-xl ml-3 mb-3">{session?.data?.user?.role}</h2>
                 <button className="h-10 text-end">
                   <Link
                     href="/api/auth/signout"
