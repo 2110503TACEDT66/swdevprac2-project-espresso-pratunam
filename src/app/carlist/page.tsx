@@ -53,9 +53,9 @@ const mockCars = [
 
 
 const CarListPage = async () => {
-  // const carFetched = await getAllCars()
+  const carFetched = await getAllCars()
 
-  // const carList = carFetched['data'];
+  const carList = carFetched['data'];
 
     return (
       <main className="relative bg-white pb-5">
@@ -80,13 +80,13 @@ const CarListPage = async () => {
           </div>
           <h1 className="text-black text-4xl font-semibold px-10 mt-5 mb-5">Available Car</h1>
           <div className="w-full grid grid-cols-4 gap-8 px-20 mb-10">
-          {/* {
+          {
               carList.map((car:Car) => {
                   return(
                       <CarCard key={car.RegistrationNumber} name={car.Model} brand={car.Brand} model={car.Model} year={car.Year} color={car.Color} type={car.Type} registrationNumber= {car.RegistrationNumber} imgSrc={car.imgsrc} zeroToHundred={car.zerotohundred} topSpeed={car.topspeed} engineLitre={car.enginelitre} carId={car._id} price={car.priceperday}></CarCard>
                   )
               })
-          } */}
+          }
           </div>
         </div>
     </main>
