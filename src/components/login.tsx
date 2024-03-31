@@ -1,5 +1,6 @@
 "use client";
 import { SignInResponse, signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -16,8 +17,8 @@ const Login = (props: Props) => {
     const signTheFUckIn = signIn("credentials", {
       email: email,
       password: password,
-      callbackUrl: '/profile',
-      redirect: true
+      callbackUrl: "/profile",
+      redirect: true,
     });
   };
 
@@ -29,13 +30,11 @@ const Login = (props: Props) => {
     <div className="text-slate-200 h-screen w-screen flex items-center justify-center bg-black">
       {session.data?.user ? (
         <div className="text-center">
-            <h1 className="mb-6 text-2xl">
-                You Already Logged In Bro
-            </h1>
+          <h1 className="mb-6 text-2xl">You Already Logged In Bro</h1>
           <button
             className="inline-block px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             onClick={() => {
-                signOut()
+              signOut();
             }}
           >
             Logout
@@ -82,7 +81,13 @@ const Login = (props: Props) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
+          <div className="text-white flex items-center mt-3">
+            <p>haven't got account yet??</p>
+            <Link href='/signup'>
+             <p className="ml-1 text-blue-500 hover:text-blue-400  cursor-pointer">Sign up here</p>
+            </Link>
+           
+          </div>
           <button
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-5"
