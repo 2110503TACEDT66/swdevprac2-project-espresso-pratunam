@@ -3,8 +3,8 @@ import { UserType } from "@/next-auth";
 import NextAuth from "next-auth/next";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import dotenv from 'dotenv'; 
-dotenv.config(); 
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -37,8 +37,8 @@ export const authOptions: AuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      console.log("----- session ------")
-      console.log(session)
+      // console.log("----- session ------")
+      // console.log(session)
       console.log("----- token ------")
       console.log(token)
       const user = token.user as UserType
@@ -48,6 +48,7 @@ export const authOptions: AuthOptions = {
       session.user.phone = user.phone as any;
       session.user.role = user.role as any;
       session.user.createdAt = user.createdAt;
+      session.user.token = token.token as any;
       console.log("----- modified session ------")
       console.log(session)
       return session

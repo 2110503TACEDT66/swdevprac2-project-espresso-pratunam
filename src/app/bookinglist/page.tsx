@@ -67,6 +67,10 @@ const BookingListPage = () => {
     fetchCars();
   }, []);
 
+  if (isLoading) {
+    return <p className="text-white">Loading Data</p>;
+  }
+
   if (!bookings) {
     return <p className="text-white">Cannot Fetch Bookings</p>;
   }
@@ -75,9 +79,7 @@ const BookingListPage = () => {
     return <p className="text-white">Cannot Fetch Cars</p>;
   }
 
-  if (isLoading) {
-    return <p className="text-white">Loading Data</p>;
-  }
+
 
   const handleEditBooking = (bookingId: any) => {
     setSelectedBooking(bookingId);
