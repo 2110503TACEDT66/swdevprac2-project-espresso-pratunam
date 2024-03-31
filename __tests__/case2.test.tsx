@@ -8,6 +8,7 @@ import editBooking from "@/libs/editBooking";
 import deleteBooking from "@/libs/deleteBooking";
 import { useRouter } from "next/navigation";
 
+
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn().mockReturnValue({
     push: jest.fn(),
@@ -18,6 +19,13 @@ jest.mock("next-auth/react", () => ({
   ...jest.requireActual("next-auth/react"),
   useSession: jest.fn(),
 }));
+
+jest.mock("@/libs/createBooking", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
+
 
 describe("Car Booking", () => {
   beforeEach(() => {
@@ -35,12 +43,19 @@ describe("Car Booking", () => {
     );
   });
 
+  
+
   it("should create edit and delete a booking successfully", async () => {
     const startDateInput = screen.getByLabelText("Start");
     userEvent.type(startDateInput, "03/30/2024");
 
     const endDateInput = screen.getByLabelText("End");
     userEvent.type(endDateInput, "03/31/2024");
+
+    const createBookingMock = createBooking as jest.Mock;
+
+    createBookingMock.mockResolvedValueOnce({});
+    
 
     const confirmBookingButton = screen.getByRole("button", {
       name: "BOOK",
@@ -49,12 +64,13 @@ describe("Car Booking", () => {
     userEvent.click(confirmBookingButton);
 
     await waitFor(() =>
-      expect(createBooking).toHaveBeenCalledWith(
-        "mockCarId",
-        expect.any(Date),
-        expect.any(Date)
-      )
-    );
+  expect(createBookingMock).toHaveBeenCalledWith(
+    "mockCarId",
+    expect.any(Date),
+    expect.any(Date)
+  )
+);
+
 
     expect(screen.getByText("Booking Successful")).toBeInTheDocument();
 
@@ -88,3 +104,4 @@ describe("Car Booking", () => {
     await waitFor(() => expect(deleteBookingMock).toHaveBeenCalled());
   });
 });
+

@@ -20,7 +20,8 @@ const config = {
     "^@panva/hkdf": require.resolve("@panva/hkdf"),
     "^preact-render-to-string": require.resolve("preact-render-to-string"),
     "^preact": require.resolve("preact"),
-    "^uuid": require.resolve("uuid")
+    "^uuid": require.resolve("uuid"),
+    "^@/(.*)$": "<rootDir>/src/$1"
   },
 }
  

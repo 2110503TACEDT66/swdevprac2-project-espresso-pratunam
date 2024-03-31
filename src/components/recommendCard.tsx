@@ -28,7 +28,7 @@ const RecommendCard = ({name,imgSrc, zeroToHundred,topSpeed, engineLitre}: Props
           <div className="w-0.5 bg-white h-full"></div>
           <div className="text-center w-[30%]">
             <h3 className="font-bold text-lg">
-              {topSpeed} <span className="text-xs">mph</span>
+              {topSpeed} mph
             </h3>
             <p className="text-s font-light">Top speed</p>
           </div>
