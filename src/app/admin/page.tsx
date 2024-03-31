@@ -45,8 +45,8 @@ const Adminview = () => {
     const fetchSession = async () => {
       try {
         console.log(session);
-        console.log(`Hey : ${session?.user?.user.role}`)
-        if (session?.user?.user.role !== 'admin') {
+        console.log(`Hey : ${session?.user?.role}`)
+        if (session?.user?.role !== 'admin') {
           router.push("/");
         }
       } catch (error) {
@@ -104,7 +104,7 @@ const Adminview = () => {
 
 
 
-  if(session?.user?.user.role != 'admin'){
+  if(session?.user?.role != 'admin'){
     router.push("/")
   }
 

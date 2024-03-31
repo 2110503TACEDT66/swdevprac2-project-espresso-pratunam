@@ -9,7 +9,7 @@ export default async function createBooking(
   endDate: Date
 ) {
   const session = await getServerSession(authOptions);
-  const response = await fetch(`http://localhost:8000/cars/${carId}/bookings`, {
+  const response = await fetch(`https://espresso-pratunam-rental-car.vercel.app/cars/${carId}/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
