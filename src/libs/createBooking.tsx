@@ -9,11 +9,11 @@ export default async function createBooking(
   endDate: Date
 ) {
   const session = await getServerSession(authOptions);
-  const response = await fetch(`http://localhost:8000/cars/${carId}/bookings`, {
+  const response = await fetch(`https://espresso-pratunam-rental-car.vercel.app/cars/${carId}/bookings`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${session?.user?.token}`,
+      "authorization": `Bearer ${session?.user?.token}`,
     },
     body: JSON.stringify({
       ProviderID: providerId,
@@ -21,6 +21,7 @@ export default async function createBooking(
       EndDate: endDate,
     }),
   });
+
   if(response.status==404){
     throw new Error("You've reached maximum booking of 3");
   }

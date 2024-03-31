@@ -1,14 +1,16 @@
 export default async function userMe() {
-    const response = await fetch("http://localhost:8000/authentication/me",{
-        method: "GET",
-        headers:{
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-        }),
-    })
-    if(!response.ok){
-        throw new Error("Failed to fetch hospitals")
+  const response = await fetch(
+    "https://espresso-pratunam-rental-car.vercel.app/authentication/me",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
     }
-    return await response.json()
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch user\n" + response.statusText);
+  }
+  return await response.json();
 }

@@ -24,7 +24,6 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
   const [car, setCar] = React.useState<Car | null>(null);
   const { data: session, status } = useSession();
 
-
   const router = useRouter();
 
   const handleDateRangeChange = (newDateRange: DateRange<Dayjs>) => {
@@ -33,24 +32,6 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
 
   const handleBooking = async () => {
     try {
-      setLoading(true);
-      try {
-        const session = await getServerSession(authOptions);
-        if (session?.user?.user.role!='admin') {
-          const userBookings = await getBookings();
-          const userBookingCount = userBookings.length;
-          //console.log(userBookingCount)
-          if (userBookingCount >= 3) {
-            // If the user already has 3 bookings, show an alert
-            alert("You've reached maximum booking of 3");
-            setLoading(false);
-            router.push("/bookinglist");
-            return; // Return early to avoid further execution
-          }
-        }
-      } catch (error) {
-        //console.log(error);
-      }
       const createBookingFetching = await createBooking(
         car!._id,
         car!.ProviderID,
@@ -85,12 +66,9 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
     fetchData();
   }, []);
 
-  if(!session){
-    router.push("/profile")
+  if (!session) {
+    router.push("/profile");
   }
-
-  if (isLoading) return <p className="text-white">Loading...</p>;
-  if (!car) return <p className="text-white">Cannot find a car...</p>;
 
   return (
     <main className="relative overflow-hidden">
@@ -106,43 +84,51 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
           <div className="absolute inset-0 bg-black opacity-80"></div>
           <div className="w-[80%] h-[30vw] bg-white rounded-2xl abolute z-10 flex justify-center items-center shadow-[0_0_100px_50px_rgba(255,255,255,0.2)]">
             <div className="w-[100%] h-[100%] relative rounded-2xl">
-              <Image
-                src={car.imgsrc}
-                layout="fill"
-                objectFit="cover"
-                alt="LandingPageImage"
-                objectPosition="center"
-                className="rounded-2xl"
-              />
+              {isLoading ? (
+                <h1>Loading</h1>
+              ) : (
+                <Image
+                  src={car!.imgsrc}
+                  layout="fill"
+                  objectFit="cover"
+                  alt="LandingPageImage"
+                  objectPosition="center"
+                  className="rounded-2xl"
+                />
+              )}
             </div>
           </div>
         </div>
         <div className="w-[45%] h-full overflow-scroll px-10 pt-10 relative flex flex-col items-center ">
           <div className="w-full">
-            <h1 className="text-4xl mb-5 font-semibold">{car.Brand}</h1>
+            <h1 className="text-4xl mb-5 font-semibold">
+              {isLoading ? "Loading" : car!.Model}
+            </h1>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Brand: </h1>
-              <h1 className="ml-1">{car?.Brand}</h1>
+              <h1 className="ml-1">{isLoading ? "loading" : car!.Brand}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Model:</h1>
-              <h1 className="ml-1"> {car?.Model}</h1>
+              <h1 className="ml-1"> {isLoading ? "loading" : car!.Model}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Year: </h1>
-              <h1 className="ml-1">{car?.Year}</h1>
+              <h1 className="ml-1">{isLoading ? "loading" : car!.Year}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Type: </h1>
-              <h1 className="ml-1">{car?.Type}</h1>
+              <h1 className="ml-1">{isLoading ? "loading" : car!.Type}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">color: </h1>
-              <h1 className="ml-1">{car?.Type}</h1>
+              <h1 className="ml-1">{isLoading ? "loading" : car!.Type}</h1>
             </div>
             <div className="mb-5 flex flex-row">
               <h1 className="font-medium">Registration Number: </h1>
-              <h1 className="ml-1">{car?.RegistrationNumber}</h1>
+              <h1 className="ml-1">
+                {isLoading ? "loading" : car!.RegistrationNumber}
+              </h1>
             </div>
             <div className="text-lg font-medium mt-10 mb-10  flex items-center justify-center w-full ">
               <div className="flex flex-row w-[100%] h-[100%]">
@@ -150,19 +136,19 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
                   Zero to hundred{" "}
                   <hr className="border-gray-400 w-full p-0"></hr>
                   <div className="text-2xl flex items-center justify-center font-semibold mt-2 ">
-                    {car?.zerotohundred}
+                    {isLoading ? "loading" : car!.zerotohundred}
                   </div>
                 </div>
                 <div className="bg-gray-100  hover:bg-black hover:text-white  p-5 shadow-lg text-center m-1 rounded-lg w-[33%] mb-1 hover:shadow-[0_0_20px_3px_rgba(0,0,255,0.1)]">
                   Top speed<hr className="border-gray-400 w-full p-0"></hr>
                   <div className="text-2xl flex items-center justify-center font-semibold mt-2 ">
-                    {car?.topspeed}
+                    {isLoading ? "loading" : car!.topspeed}
                   </div>
                 </div>
                 <div className=" bg-gray-100  hover:bg-black hover:text-white  p-5 shadow-lg text-center m-1  rounded-lg w-[33%] mb-1 hover:shadow-[0_0_20px_3px_rgba(0,0,255,0.1)]">
                   Engine Litre<hr className="border-gray-400 w-full p-0"></hr>
                   <div className="text-2xl flex items-center justify-center font-semibold mt-2 ">
-                    {car?.enginelitre}
+                    {isLoading ? "loading" : car!.enginelitre}
                   </div>
                 </div>
               </div>
@@ -170,7 +156,7 @@ const CarDetailPage = ({ params }: { params: { carId: string } }) => {
 
             <div className="flex flex-row mb-3 ">
               <h1 className="text-2xl mr-1 font-semibold">
-                THB {car.priceperday}
+                THB {isLoading ? "loading" : car!.priceperday}
               </h1>
               <h1 className="text-lg ">/ day</h1>
             </div>
