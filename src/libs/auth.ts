@@ -27,7 +27,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   pages: {
-    // signIn: "/SignIn",
+    signIn: "/SignIn",
   },
   session: { strategy: "jwt" },
   callbacks: {
