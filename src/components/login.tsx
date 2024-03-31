@@ -82,7 +82,7 @@ const Login = (props: Props) => {
             />
           </div>
           <div className="text-white flex items-center mt-3">
-            <p>haven't got account yet??</p>
+            <p>do not have an account yet??</p>
             <Link href='/signup'>
              <p className="ml-1 text-blue-500 hover:text-blue-400  cursor-pointer">Sign up here</p>
             </Link>

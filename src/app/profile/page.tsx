@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const router = useRouter();
   if (!session.data) {
     // redirect to login page
-    router.push("/signin");
+    router.push("/SignIn");
   } else {
     return (
       <main className="relative h-screen w-screen flex flex-col justify-center bg-[#181818] items-center">
